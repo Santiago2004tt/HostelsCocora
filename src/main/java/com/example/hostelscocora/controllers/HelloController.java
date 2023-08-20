@@ -1,4 +1,4 @@
-package com.example.hostelscocora;
+package com.example.hostelscocora.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
