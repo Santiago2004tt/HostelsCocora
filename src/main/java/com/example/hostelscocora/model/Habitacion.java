@@ -85,6 +85,14 @@ public class Habitacion implements Serializable {
         this.listaCamas = listaCamas;
     }
 
+    public ArrayList<DetalleReserva> getListaDetalleReserva() {
+        return listaDetalleReserva;
+    }
+
+    public void setListaDetalleReserva(ArrayList<DetalleReserva> listaDetalleReserva) {
+        this.listaDetalleReserva = listaDetalleReserva;
+    }
+
     /**
      * método equal para id
      * @param o
