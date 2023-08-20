@@ -11,27 +11,26 @@ public class Habitacion implements Serializable {
      * atributos
      */
     private byte capacidad;
-    private boolean disponible;
     private String id;
     private ESTADO_HABITACION estadoHabitacion;
     private TIPO_HABITACION tipoHabitacion;
     private ArrayList<Cama> listaCamas;
+    private ArrayList<DetalleReserva> listaDetalleReserva;
 
     /**
      * constructor
      * @param capacidad
-     * @param disponible
      * @param id
      * @param estadoHabitacion
      * @param tipoHabitacion
      */
-    public Habitacion(byte capacidad, boolean disponible, String id, ESTADO_HABITACION estadoHabitacion, TIPO_HABITACION tipoHabitacion) {
+    public Habitacion(byte capacidad, String id, ESTADO_HABITACION estadoHabitacion, TIPO_HABITACION tipoHabitacion) {
         this.capacidad = capacidad;
-        this.disponible = disponible;
         this.id = id;
         this.estadoHabitacion = estadoHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         listaCamas = new ArrayList<>();
+        listaDetalleReserva = new ArrayList<>();
     }
 
     /**
@@ -39,6 +38,7 @@ public class Habitacion implements Serializable {
      */
     public Habitacion(){
         listaCamas = new ArrayList<>();
+        listaDetalleReserva = new ArrayList<>();
     }
 
     /**
@@ -51,14 +51,6 @@ public class Habitacion implements Serializable {
 
     public void setCapacidad(byte capacidad) {
         this.capacidad = capacidad;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public String getId() {
