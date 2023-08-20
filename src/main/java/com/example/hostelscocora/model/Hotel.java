@@ -1,9 +1,11 @@
 package com.example.hostelscocora.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hotel {
+public class Hotel implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /**
      * atributos
      */

@@ -1,9 +1,11 @@
 package com.example.hostelscocora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Fecha {
+public class Fecha implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /**
      * atributos
      */

@@ -1,8 +1,11 @@
 package com.example.hostelscocora.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class DetalleReserva {
+public class DetalleReserva implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * atributos
