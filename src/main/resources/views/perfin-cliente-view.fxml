@@ -10,29 +10,49 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.PerfilClienteController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="207.0" text="Nombre: ">
+      <Label fx:id="lblNombre" layoutX="16.0" layoutY="105.0" prefHeight="17.0" prefWidth="207.0" text="Nombre: ">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="40.0" prefHeight="17.0" prefWidth="207.0" text="Apellido:">
+      <Label fx:id="lblApellido" layoutX="14.0" layoutY="129.0" prefHeight="17.0" prefWidth="207.0" text="Apellido:">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="67.0" prefHeight="17.0" prefWidth="207.0" text="Cedula:">
+      <Label fx:id="lblCedula" layoutX="14.0" layoutY="153.0" prefHeight="17.0" prefWidth="207.0" text="Cedula:">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="96.0" prefHeight="17.0" prefWidth="207.0" text="Telefono:">
+      <Label fx:id="lblTelefono" layoutX="14.0" layoutY="178.0" prefHeight="17.0" prefWidth="207.0" text="Telefono:">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="120.0" prefHeight="17.0" prefWidth="207.0" text="Email:">
+      <Label fx:id="lblEmail" layoutX="16.0" layoutY="205.0" prefHeight="17.0" prefWidth="207.0" text="Email:">
          <font>
-            <Font name="Times New Roman" size="12.0" />
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnReserva" layoutX="57.0" layoutY="338.0" mnemonicParsing="false" onAction="#mostrarReservas" text="Reservas">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnHabitacion" layoutX="155.0" layoutY="338.0" mnemonicParsing="false" onAction="#mostrarHabitacionesDisponibles" text="Habitación">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#mostrarLoginCliente" prefHeight="25.0" prefWidth="62.0" text="Salir">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="63.0" layoutY="33.0" text="Bievenido a tu cuenta">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
    </children>

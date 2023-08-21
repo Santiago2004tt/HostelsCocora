@@ -48,4 +48,9 @@ public class Fecha implements Serializable {
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
+
+    public boolean isSuperpone(Fecha fecha) {
+        return (fechaInicio.isBefore(fecha.fechaFinal) && fechaFinal.isAfter(fecha.fechaInicio))
+                || (fecha.fechaInicio.isBefore(fechaFinal) && fecha.fechaFinal.isAfter(fechaInicio));
+    }
 }

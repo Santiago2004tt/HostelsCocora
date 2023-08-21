@@ -3,7 +3,11 @@ package com.example.hostelscocora.controllers;
 import com.example.hostelscocora.exceptions.ClienteException;
 import com.example.hostelscocora.model.Cliente;
 import com.example.hostelscocora.model.Hotel;
+import com.example.hostelscocora.model.Reserva;
 import com.example.hostelscocora.persistence.Persistencia;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class ModelFactoryController implements Runnable{
 
@@ -24,6 +28,10 @@ public class ModelFactoryController implements Runnable{
             guardarResourceXML();
         else if (hiloActual == guardarSerializable)
             guardarResourceSerializable();
+    }
+
+    public ArrayList<Reserva> obtenerReserva(Cliente clienteLogueado) {
+        return hotel.obtenerReservaCliente(clienteLogueado);
     }
 
 

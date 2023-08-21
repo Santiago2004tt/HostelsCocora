@@ -142,4 +142,8 @@ public class Hotel implements Serializable {
         }
         return true;
     }
+
+    public ArrayList<Reserva> obtenerReservaCliente(Cliente clienteLogueado) {
+        return clienteLogueado.getListaReserva();
+    }
 }

@@ -71,7 +71,7 @@ public class LoginController {
 
     //métodos
 
-    public void obtenerAplicacion(Application application){
+    public void setApplication(Application application){
         this.application = application;
     }
 
@@ -117,5 +117,6 @@ public class LoginController {
     }
 
     private void accederRecepcionistaAction() {
+        //aplicacion.
     }
 }

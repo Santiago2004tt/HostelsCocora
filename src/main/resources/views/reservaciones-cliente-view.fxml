@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.ReservacionesClienteController">
+   <children>
+      <TableView fx:id="tblReservaciones" layoutX="46.0" layoutY="72.0" prefHeight="300.0" prefWidth="226.0">
+        <columns>
+          <TableColumn fx:id="columCodigo" prefWidth="111.0" text="Codigo" />
+          <TableColumn fx:id="columTotal" prefWidth="114.0" text="Total" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#mostrarPerfilCliente" text="Salir">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAcceder" layoutX="117.0" layoutY="388.0" mnemonicParsing="false" onAction="#accederDetallesReserva" text="Acceder">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="93.0" layoutY="26.0" text="Reservaciones">
+         <font>
+            <Font name="Times New Roman" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -170,4 +170,12 @@ public class CrearCuentaController {
         alert.showAndWait();
     }
 
+    /**
+     *
+     * @param application
+     */
+    public void setApplication(Application application){
+        this.application = application;
+    }
+
 }
