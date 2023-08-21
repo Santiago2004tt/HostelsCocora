@@ -11,6 +11,7 @@ public class Cama implements Serializable {
      */
     private byte peso;
     private String id;
+    private String imagen;
     private Habitacion habitacion;
     private TIPO_CAMA tipoCama;
     private ESTADO_CAMA estadoCama;
@@ -23,9 +24,10 @@ public class Cama implements Serializable {
      * @param tipoCama
      * @param estadoCama
      */
-    public Cama(byte peso, String id, Habitacion habitacion, TIPO_CAMA tipoCama, ESTADO_CAMA estadoCama) {
+    public Cama(byte peso, String id, String imagen, Habitacion habitacion, TIPO_CAMA tipoCama, ESTADO_CAMA estadoCama) {
         this.peso = peso;
         this.id = id;
+        this.imagen = imagen;
         this.habitacion = habitacion;
         this.tipoCama = tipoCama;
         this.estadoCama = estadoCama;
@@ -56,6 +58,14 @@ public class Cama implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Habitacion getHabitacion() {
