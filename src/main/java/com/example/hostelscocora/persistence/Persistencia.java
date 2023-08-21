@@ -2,6 +2,8 @@ package com.example.hostelscocora.persistence;
 
 import com.example.hostelscocora.model.Hotel;
 
+import java.io.FileNotFoundException;
+
 public class Persistencia {
 
     public static final String RUTA_ARCHIVO_LOG = "C:/td/persistencia/log/MarketPlaceLog.txt";
@@ -48,6 +50,8 @@ public class Persistencia {
 
         try {
             marketPlaceVendedores = (Hotel) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_HOTEL_XML);
+        } catch (FileNotFoundException ignored) {
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -58,7 +62,7 @@ public class Persistencia {
 
     public static void guardarRecursoMarketPlaceXML(Hotel hotel) {
 
-                try {
+        try {
             ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_MODELO_HOTEL_XML, hotel);
         } catch (Exception e) {
             // TODO Auto-generated catch block
