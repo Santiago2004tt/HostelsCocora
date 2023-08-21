@@ -20,15 +20,13 @@ public class Cama implements Serializable {
      * constructor
      * @param peso
      * @param id
-     * @param habitacion
      * @param tipoCama
      * @param estadoCama
      */
-    public Cama(byte peso, String id, String imagen, Habitacion habitacion, TIPO_CAMA tipoCama, ESTADO_CAMA estadoCama) {
+    public Cama(byte peso, String id, String imagen, TIPO_CAMA tipoCama, ESTADO_CAMA estadoCama) {
         this.peso = peso;
         this.id = id;
         this.imagen = imagen;
-        this.habitacion = habitacion;
         this.tipoCama = tipoCama;
         this.estadoCama = estadoCama;
     }

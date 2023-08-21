@@ -1,9 +1,12 @@
 package com.example.hostelscocora.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Reserva {
+public class Reserva implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * atributos
@@ -15,6 +18,7 @@ public class Reserva {
 
     /**
      * constructor
+     *
      * @param codigo
      * @param total
      * @param medioPago
@@ -29,12 +33,13 @@ public class Reserva {
     /**
      * constructor vació
      */
-    public Reserva(){
+    public Reserva() {
         listaDetallesReserva = new ArrayList<>();
     }
 
     /**
      * métodos get y set
+     *
      * @return
      */
     public String getCodigo() {
@@ -71,6 +76,7 @@ public class Reserva {
 
     /**
      * método equals para verificar código de reserva
+     *
      * @param o
      * @return
      */

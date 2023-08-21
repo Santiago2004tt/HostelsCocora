@@ -9,15 +9,15 @@ public class Fecha implements Serializable {
     /**
      * atributos
      */
-    private LocalDate fechaInicio;
-    private LocalDate fechaFinal;
+    private String fechaInicio;
+    private String fechaFinal;
 
     /**
      * constructor
      * @param fechaInicio
      * @param fechaFinal
      */
-    public Fecha(LocalDate fechaInicio, LocalDate fechaFinal) {
+    public Fecha(String fechaInicio, String fechaFinal) {
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
     }
@@ -33,19 +33,19 @@ public class Fecha implements Serializable {
      * métodos get y set
      * @return
      */
-    public LocalDate getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(LocalDate fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 }
