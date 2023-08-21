@@ -12,6 +12,7 @@ public class Habitacion implements Serializable {
      */
     private byte capacidad;
     private String id;
+    private String imagen;
     private ESTADO_HABITACION estadoHabitacion;
     private TIPO_HABITACION tipoHabitacion;
     private ArrayList<Cama> listaCamas;
@@ -24,9 +25,10 @@ public class Habitacion implements Serializable {
      * @param estadoHabitacion
      * @param tipoHabitacion
      */
-    public Habitacion(byte capacidad, String id, ESTADO_HABITACION estadoHabitacion, TIPO_HABITACION tipoHabitacion) {
+    public Habitacion(byte capacidad, String id, String imagen, ESTADO_HABITACION estadoHabitacion, TIPO_HABITACION tipoHabitacion) {
         this.capacidad = capacidad;
         this.id = id;
+        this.imagen = imagen;
         this.estadoHabitacion = estadoHabitacion;
         this.tipoHabitacion = tipoHabitacion;
         listaCamas = new ArrayList<>();
@@ -59,6 +61,14 @@ public class Habitacion implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public ESTADO_HABITACION getEstadoHabitacion() {
