@@ -1,5 +1,7 @@
 package com.example.hostelscocora.controllers;
 
+import com.example.hostelscocora.exceptions.ClienteException;
+import com.example.hostelscocora.model.Cliente;
 import com.example.hostelscocora.model.Hotel;
 import com.example.hostelscocora.persistence.Persistencia;
 
@@ -23,6 +25,7 @@ public class ModelFactoryController implements Runnable{
         else if (hiloActual == guardarSerializable)
             guardarResourceSerializable();
     }
+
 
     private static class SingletonHolder {
         private final static ModelFactoryController eInstance = new ModelFactoryController();
@@ -71,4 +74,19 @@ public class ModelFactoryController implements Runnable{
     private void guardarResourceSerializable() {
         Persistencia.guardarRecursoMarketPlaceBinario(hotel);
     }
+
+    //métodos Clientes
+
+    public boolean verificarUsuario(String cedula, String contrasenia) throws ClienteException {
+        return hotel.verificarUsuario(cedula, contrasenia);
+    }
+
+    public Cliente obtenerClienteLogueado(String cedula) throws ClienteException {
+        return hotel.obtenerClienteLogueado(cedula);
+    }
+
+    public boolean crearCuentaCliente(String nombre, String apellido, String cedula, String telefono, String email, String contrasenia) throws ClienteException {
+        return hotel.crearCuentaCliente(nombre, apellido, cedula, telefono, email, contrasenia);
+    }
+
 }

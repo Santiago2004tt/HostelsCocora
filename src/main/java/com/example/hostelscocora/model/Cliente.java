@@ -1,5 +1,7 @@
 package com.example.hostelscocora.model;
 
+import com.example.hostelscocora.exceptions.ClienteException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -115,5 +117,19 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(cedula, contrasenia);
+    }
+
+    public boolean verificarCuenta(String cedula, String contrasenia) throws ClienteException {
+
+        if (cedula.isEmpty())
+            throw new ClienteException("El campo de cédula es requerido");
+        if (contrasenia.isEmpty())
+            throw new ClienteException("El campo contraseña es requerido");
+
+        if(this.cedula.equals(cedula) && this.contrasenia.equals(contrasenia)){
+            return true;
+        }
+
+        return false;
     }
 }
