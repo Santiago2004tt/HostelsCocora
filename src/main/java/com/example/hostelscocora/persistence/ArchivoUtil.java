@@ -204,7 +204,6 @@ public  class ArchivoUtil {
         codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
         codificadorXML.writeObject(objeto);
         codificadorXML.close();
-
     }
 
     /**

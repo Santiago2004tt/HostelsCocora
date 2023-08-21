@@ -9,4 +9,5 @@ module com.example.hostelscocora {
     opens com.example.hostelscocora.controllers to javafx.fxml;
     exports com.example.hostelscocora.aplication;
     opens com.example.hostelscocora.aplication to javafx.fxml;
+    exports com.example.hostelscocora.model;
 }
