@@ -84,7 +84,7 @@ public class CrearCuentaController {
 
     @FXML
     void crearCuenta(ActionEvent event) {
-        crearCuentaCliente();
+        crearCuentaAction();
     }
 
     @FXML
@@ -104,7 +104,7 @@ public class CrearCuentaController {
         this.modelFactoryController = ModelFactoryController.getInstance();
     }
 
-    private void crearCuentaCliente() {
+    private void crearCuentaAction() {
         String nombre = tfNombre.getText();
         String apellido = tfApellido.getText();
         String cedula = tfCedula.getText();
@@ -126,6 +126,16 @@ public class CrearCuentaController {
         }
     }
 
+    /**
+     * metodo para verificar espacio
+     * @param nombre
+     * @param apellido
+     * @param cedula
+     * @param telefono
+     * @param email
+     * @param contrasenia
+     * @return
+     */
     private boolean verificarEspacios(String nombre, String apellido, String cedula, String telefono, String email, String contrasenia) {
         if(nombre.isEmpty()){
             return false;
@@ -148,6 +158,11 @@ public class CrearCuentaController {
         return true;
     }
 
+    /**
+     * método para enviar un mensaje o comunicado al usuario
+     * @param titulo
+     * @param mensaje
+     */
     public static void mensajeAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(titulo);

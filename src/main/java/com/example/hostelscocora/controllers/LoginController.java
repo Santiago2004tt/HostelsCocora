@@ -35,7 +35,7 @@ public class LoginController {
 
     @FXML
     void accederRecepcionista(ActionEvent event) {
-        mostrarLoginRecepcionista();
+        accederRecepcionistaAction();
     }
 
 
@@ -56,12 +56,12 @@ public class LoginController {
 
     @FXML
     void accederCuenta(ActionEvent event) {
-        ingresarUsuario();
+        accederCuentaAction();
     }
 
     @FXML
     void accederCrearCuenta(ActionEvent event) {
-        mostrarCrearCuenta();
+        accederCrearCuentaAction();
     }
 
     @FXML
@@ -78,7 +78,7 @@ public class LoginController {
     /**
      * método para verificar el inicio de sesión
      */
-    private void ingresarUsuario() {
+    private void accederCuentaAction() {
         String cedula = tfCedula.getText();
         String contrasenia = pfContrasenia.getText();
 
@@ -112,10 +112,10 @@ public class LoginController {
         //aplicacion.mostrarCuentaCliente(clienteLogueado);
     }
 
-    private void mostrarCrearCuenta() {
+    private void accederCrearCuentaAction() {
         //aplicacion.
     }
 
-    private void mostrarLoginRecepcionista() {
+    private void accederRecepcionistaAction() {
     }
 }

@@ -9,17 +9,38 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.LoginController">
    <children>
-      <Button fx:id="btnRecepcionista" layoutX="14.0" layoutY="443.0" mnemonicParsing="false" onAction="#accederRecepcionista" prefHeight="35.0" prefWidth="89.0" text="Recepcionista" />
+      <Button fx:id="btnRecepcionista" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#accederRecepcionista" prefHeight="35.0" prefWidth="101.0" text="Recepcionista">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font></Button>
       <Label layoutX="90.0" layoutY="42.0" prefHeight="59.0" prefWidth="121.0" text="Iniciar Sesion">
          <font>
-            <Font size="20.0" />
+            <Font name="Times New Roman" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="tfCedula" layoutX="76.0" layoutY="184.0" onKeyPressed="#tfCedulaKey" />
-      <Label layoutX="83.0" layoutY="160.0" prefHeight="17.0" prefWidth="54.0" text="Cedula:" />
-      <Label layoutX="81.0" layoutY="218.0" text="Contraseña:" />
-      <Button fx:id="btnAccederCuenta" layoutX="110.0" layoutY="281.0" mnemonicParsing="false" onAction="#accederCuenta" text="Acceder" />
-      <Button fx:id="btnAccederCrearCuenta" layoutX="182.0" layoutY="448.0" mnemonicParsing="false" onAction="#accederCrearCuenta" text="Crear cuenta " />
-      <PasswordField fx:id="pfContrasenia" layoutX="76.0" layoutY="244.0" onKeyPressed="#pfContraseniaKey" />
+      <TextField fx:id="tfCedula" layoutX="76.0" layoutY="184.0" onKeyPressed="#tfCedulaKey">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font></TextField>
+      <Label layoutX="83.0" layoutY="160.0" prefHeight="17.0" prefWidth="54.0" text="Cedula:">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font></Label>
+      <Label layoutX="81.0" layoutY="218.0" text="Contraseña:">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font></Label>
+      <Button fx:id="btnAccederCuenta" layoutX="110.0" layoutY="281.0" mnemonicParsing="false" onAction="#accederCuenta" prefHeight="35.0" prefWidth="67.0" text="Acceder">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnAccederCrearCuenta" layoutX="185.0" layoutY="444.0" mnemonicParsing="false" onAction="#accederCrearCuenta" prefHeight="35.0" prefWidth="101.0" text="Crear cuenta ">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font></Button>
+      <PasswordField fx:id="pfContrasenia" layoutX="76.0" layoutY="244.0" onKeyPressed="#pfContraseniaKey">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font></PasswordField>
    </children>
 </AnchorPane>
