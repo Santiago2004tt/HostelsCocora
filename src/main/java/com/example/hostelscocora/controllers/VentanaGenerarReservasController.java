@@ -42,13 +42,13 @@ public class VentanaGenerarReservasController {
     private Button btnRegresar;
 
     @FXML
-    private ComboBox<String> cbCamaExtra;
+    private ComboBox<String> cbCamaAdicional;
 
     @FXML
     private ComboBox<TIPO_HABITACION> cbTipoHabitacion;
 
     @FXML
-    private DatePicker dpFechaFInal;
+    private DatePicker dpFechaFinal;
 
     @FXML
     private DatePicker dpFechaInicial;
@@ -150,8 +150,18 @@ public class VentanaGenerarReservasController {
     private void agregarReserva() throws ValorRequeridoException {
         if (habitacionSeleccionada == null)
             throw new ValorRequeridoException("Seleccione una habitación");
-        if (reserva == null)
+        if (dpFechaInicial.getValue() == null)
+            throw new ValorRequeridoException("El valor fecha inicio es requerido");
+        if (dpFechaFinal.getValue() == null)
+            throw new ValorRequeridoException("El valor fecha final es requerido");
+        if (cbCamaAdicional.getValue() == null)
+            throw new ValorRequeridoException("El valor cama extra es requerido");
+        if (cliente == null)
+            throw new ValorRequeridoException("Es necesario que busque el cliente");
+        if (reserva == null) {
             reserva = new Reserva();
+            reserva.setCliente(cliente);
+        }
         DetalleReserva detalleReserva = new DetalleReserva();
     }
 
@@ -172,13 +182,15 @@ public class VentanaGenerarReservasController {
         }
 
         cliente = clienteOptional.get();
+
         tfNombre.clear();
-        tfNombre.setText(cliente.getNombre());
         tfApellido.clear();
-        tfApellido.setText(cliente.getApellido());
         tfTelefono.clear();
-        tfTelefono.setText(cliente.getTelefono());
         tfEmail.clear();
+
+        tfNombre.setText(cliente.getNombre());
+        tfApellido.setText(cliente.getApellido());
+        tfTelefono.setText(cliente.getTelefono());
         tfEmail.setText(cliente.getEmail());
     }
 
@@ -189,16 +201,16 @@ public class VentanaGenerarReservasController {
     private void filtrarHabitaciones() throws ValorRequeridoException {
         if (dpFechaInicial.getValue() == null)
             throw new ValorRequeridoException("La fecha inicial es requerida");
-        if (dpFechaFInal.getValue() == null)
+        if (dpFechaFinal.getValue() == null)
             throw new ValorRequeridoException("La fecha final es requerida");
-        getListaHabitacionesData(dpFechaInicial.getValue(), dpFechaFInal.getValue());
+        getListaHabitacionesData(dpFechaInicial.getValue(), dpFechaFinal.getValue());
     }
 
     @FXML
     void initialize() {
 
-        cbCamaExtra.setItems(FXCollections.observableArrayList("Sí", "No"));
-        cbCamaExtra.setPromptText("Seleccionar");
+        cbCamaAdicional.setItems(FXCollections.observableArrayList("Sí", "No"));
+        cbCamaAdicional.setPromptText("Seleccionar");
 
         cbTipoHabitacion.setItems(FXCollections.observableArrayList(TIPO_HABITACION.values()));
         cbTipoHabitacion.setPromptText("Seleccionar");
