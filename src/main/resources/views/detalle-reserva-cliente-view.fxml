@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.DetalleReservaClienteController">
+   <children>
+      <TableView fx:id="tblDetallesReserva" layoutX="50.0" layoutY="34.0" prefHeight="216.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="columId" prefWidth="81.0" text="id" />
+          <TableColumn fx:id="columSubTotal" prefWidth="118.0" text="Sub total" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#accederReservas" text="Salir" />
+      <ImageView fx:id="ivImagen" fitHeight="88.0" fitWidth="116.0" layoutX="14.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="lblId" layoutX="150.0" layoutY="258.0" prefHeight="17.0" prefWidth="116.0" text="id">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTipoHabitacion" layoutX="150.0" layoutY="294.0" prefHeight="17.0" prefWidth="116.0" text="Tipo habitacion">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCamaExtra" layoutX="150.0" layoutY="329.0" prefHeight="17.0" prefWidth="116.0" text="cama extra">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFechaInicio" layoutX="14.0" layoutY="392.0" prefHeight="17.0" prefWidth="200.0" text="Fecha inicio">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFechaFinal" layoutX="14.0" layoutY="424.0" prefHeight="17.0" prefWidth="206.0" text="Fecha final">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

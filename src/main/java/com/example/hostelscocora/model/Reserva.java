@@ -15,6 +15,7 @@ public class Reserva implements Serializable {
     private double total;
     private String medioPago;
     private ArrayList<DetalleReserva> listaDetallesReserva;
+    private int cantidadPersonas;
 
     /**
      * constructor
@@ -23,10 +24,11 @@ public class Reserva implements Serializable {
      * @param total
      * @param medioPago
      */
-    public Reserva(String codigo, double total, String medioPago) {
+    public Reserva(String codigo, double total, String medioPago, int cantidadPersonas) {
         this.codigo = codigo;
         this.total = total;
         this.medioPago = medioPago;
+        this.cantidadPersonas = cantidadPersonas;
         listaDetallesReserva = new ArrayList<>();
     }
 
@@ -72,6 +74,14 @@ public class Reserva implements Serializable {
 
     public void setListaDetallesReserva(ArrayList<DetalleReserva> listaDetallesReserva) {
         this.listaDetallesReserva = listaDetallesReserva;
+    }
+
+    public int getCantidadPersonas() {
+        return cantidadPersonas;
+    }
+
+    public void setCantidadPersonas(int cantidadPersonas) {
+        this.cantidadPersonas = cantidadPersonas;
     }
 
     /**
