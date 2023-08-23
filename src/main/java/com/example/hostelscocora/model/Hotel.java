@@ -16,6 +16,7 @@ public class Hotel implements Serializable {
     private ArrayList<Cama> listaCamas;
     private ArrayList<Recepcionista> listaRecepcionistas;
     private ArrayList<Cliente> listaClientes;
+    private ArrayList<Reserva> listaReserva;
 
     /**
      * constructor
@@ -27,6 +28,7 @@ public class Hotel implements Serializable {
         listaCamas = new ArrayList<>();
         listaRecepcionistas = new ArrayList<>();
         listaClientes = new ArrayList<>();
+        listaReserva = new ArrayList<>();
     }
 
     /**
@@ -37,6 +39,7 @@ public class Hotel implements Serializable {
         listaCamas = new ArrayList<>();
         listaRecepcionistas = new ArrayList<>();
         listaClientes = new ArrayList<>();
+        listaReserva = new ArrayList<>();
     }
 
     /**
@@ -81,6 +84,14 @@ public class Hotel implements Serializable {
 
     public void setListaClientes(ArrayList<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
+    }
+
+    public ArrayList<Reserva> getListaReserva() {
+        return listaReserva;
+    }
+
+    public void setListaReserva(ArrayList<Reserva> listaReserva) {
+        this.listaReserva = listaReserva;
     }
 
     /**
