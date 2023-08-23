@@ -14,6 +14,7 @@ public class Reserva implements Serializable {
     private String codigo;
     private double total;
     private String medioPago;
+    private Cliente cliente;
     private ArrayList<DetalleReserva> listaDetallesReserva;
     private int cantidadPersonas;
 
@@ -66,6 +67,14 @@ public class Reserva implements Serializable {
 
     public void setMedioPago(String medioPago) {
         this.medioPago = medioPago;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public ArrayList<DetalleReserva> getListaDetallesReserva() {
