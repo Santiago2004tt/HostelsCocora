@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
-public class CrearCuentaController {
+public class CrearCuentaClienteController {
 
     Application application;
     ModelFactoryController modelFactoryController;

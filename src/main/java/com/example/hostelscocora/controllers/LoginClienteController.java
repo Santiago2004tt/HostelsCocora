@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
-public class LoginController {
+public class LoginClienteController {
 
     Application application;
     ModelFactoryController modelFactoryController;

@@ -1,9 +1,7 @@
 package com.example.hostelscocora.controllers;
 
 import com.example.hostelscocora.exceptions.ClienteException;
-import com.example.hostelscocora.model.Cliente;
-import com.example.hostelscocora.model.Hotel;
-import com.example.hostelscocora.model.Reserva;
+import com.example.hostelscocora.model.*;
 import com.example.hostelscocora.persistence.Persistencia;
 
 import java.util.ArrayList;
