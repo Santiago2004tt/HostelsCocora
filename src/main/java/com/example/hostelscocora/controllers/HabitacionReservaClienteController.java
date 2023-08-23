@@ -1,8 +1,5 @@
 package com.example.hostelscocora.controllers;
 
-
-import com.example.hostelscocora.model.Habitacion;
-import com.example.hostelscocora.model.TIPO_HABITACION;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class HabitacionReservaClienteController {
 
@@ -17,22 +15,25 @@ public class HabitacionReservaClienteController {
     private DatePicker dpFechaFinal;
 
     @FXML
+    private TextField tfCantidadPersonas;
+
+    @FXML
     private Button btnSalir;
 
     @FXML
-    private TableColumn<Habitacion, TIPO_HABITACION> colTipoHabitacion;
+    private TableColumn<?, ?> colTipoHabitacion;
 
     @FXML
-    private ComboBox<String> cbCamaExtra;
+    private ComboBox<?> cbCamaExtra;
 
     @FXML
     private Button btnCrearReserva;
 
     @FXML
-    private TableView<Habitacion> tblHabitacion;
+    private TableView<?> tblHabitacion;
 
     @FXML
-    private TableColumn<Habitacion, String> colId;
+    private TableColumn<?, ?> colId;
 
     @FXML
     private DatePicker dpFechaInicio;

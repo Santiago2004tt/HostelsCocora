@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.HabitacionReservaClienteController">
    <children>
       <DatePicker fx:id="dpFechaInicio" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
@@ -33,16 +32,23 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnBuscar" layoutX="121.0" layoutY="373.0" mnemonicParsing="false" onAction="#buscarHabitacionesDisponibles" text="Buscar">
+      <Button fx:id="btnBuscar" layoutX="121.0" layoutY="426.0" mnemonicParsing="false" onAction="#buscarHabitacionesDisponibles" text="Buscar">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnCrearReserva" layoutX="102.0" layoutY="414.0" mnemonicParsing="false" onAction="#crearReserva" text="Crear reserva">
+      <Button fx:id="btnCrearReserva" layoutX="102.0" layoutY="461.0" mnemonicParsing="false" onAction="#crearReserva" text="Crear reserva">
          <font>
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cbCamaExtra" layoutX="76.0" layoutY="309.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbCamaExtra" layoutX="77.0" layoutY="330.0" prefWidth="150.0" />
+      <TextField fx:id="tfCantidadPersonas" layoutX="77.0" layoutY="388.0" />
+      <Label layoutX="120.0" layoutY="306.0" text="Cama extra:">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="93.0" layoutY="363.0" text="Cantidad de personas:" />
    </children>
 </AnchorPane>
