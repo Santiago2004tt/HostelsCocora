@@ -2,6 +2,7 @@ package com.example.hostelscocora.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Fecha implements Serializable {
 
@@ -49,8 +50,6 @@ public class Fecha implements Serializable {
         this.fechaFinal = fechaFinal;
     }
 
-    public boolean isSuperpone(Fecha fecha) {
-        return (fechaInicio.isBefore(fecha.fechaFinal) && fechaFinal.isAfter(fecha.fechaInicio))
-                || (fecha.fechaInicio.isBefore(fechaFinal) && fecha.fechaFinal.isAfter(fechaInicio));
-    }
+
+
 }

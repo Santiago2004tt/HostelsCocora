@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.hostelscocora.controllers.HabitacionReservaClienteController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.HabitacionReservaClienteController">
+   <children>
+      <DatePicker fx:id="dpFechaInicio" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
+      <DatePicker fx:id="dpFechaFinal" layoutX="150.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
+      <Label layoutX="14.0" layoutY="20.0" text="Fecha inicio:">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="150.0" layoutY="20.0" text="Fecha final:">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblHabitacion" layoutX="50.0" layoutY="98.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="71.0" text="id" />
+          <TableColumn fx:id="colTipoHabitacion" prefWidth="128.0" text="Tipo habitacion" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="461.0" mnemonicParsing="false" onAction="#accederPerfilCliente" text="Salir">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBuscar" layoutX="121.0" layoutY="373.0" mnemonicParsing="false" onAction="#buscarHabitacionesDisponibles" text="Buscar">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCrearReserva" layoutX="102.0" layoutY="414.0" mnemonicParsing="false" onAction="#crearReserva" text="Crear reserva">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cbCamaExtra" layoutX="76.0" layoutY="309.0" prefWidth="150.0" />
+   </children>
 </AnchorPane>

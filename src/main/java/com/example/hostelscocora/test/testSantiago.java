@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class testSantiago {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         List<Fecha> ranges = new ArrayList<>();
-        ranges.add(new Fecha(LocalDate.of(2023, 1, 1), LocalDate.of(2023, 1, 15)));
+       *//* ranges.add(new Fecha(LocalDate.of(2023, 1, 1), LocalDate.of(2023, 1, 15)));
         ranges.add(new Fecha(LocalDate.of(2023, 1, 10), LocalDate.of(2023, 1, 20)));
         ranges.add(new Fecha(LocalDate.of(2023, 1, 5), LocalDate.of(2023, 1, 25)));
-
+*//*
         boolean overlaps = verificarSuperPone(ranges);
 
         if (overlaps) {
@@ -30,6 +30,6 @@ public class testSantiago {
             }
         }
         return false; // No se encontró superposición
-    }
+    }*/
 }
 
