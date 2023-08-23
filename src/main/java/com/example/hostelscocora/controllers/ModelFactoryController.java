@@ -54,7 +54,7 @@ public class ModelFactoryController implements Runnable{
     public ModelFactoryController() {
         this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
 
-        if(hotel ==null) {
+        if(hotel == null) {
             inicializarDatos();
             guardarResourceXmlService();
             guardarResourceSerializableService();
@@ -63,6 +63,8 @@ public class ModelFactoryController implements Runnable{
     }
 
     private void guardarResourceSerializableService() {
+        guardarSerializable = new Thread(this);
+        guardarSerializable.start();
     }
 
     private void guardarResourceXmlService() {
@@ -71,8 +73,19 @@ public class ModelFactoryController implements Runnable{
     }
 
     private void inicializarDatos() {
-        guardarSerializable = new Thread(this);
-        guardarSerializable.start();
+
+    }
+
+    public ArrayList<Habitacion> obtenerHabitaciones() {
+        return hotel.getListaHabitaciones();
+    }
+
+    public ArrayList<Cama> obtenerCamas() {
+        return hotel.getListaCamas();
+    }
+
+    public ArrayList<Cliente> obtenerClientes() {
+        return hotel.getListaClientes();
     }
 
     private void guardarResourceXML() {
