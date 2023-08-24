@@ -6,6 +6,7 @@ module com.example.hostelscocora {
 
 
     exports com.example.hostelscocora.controllers;
+    exports com.example.hostelscocora.exceptions;
     opens com.example.hostelscocora.controllers to javafx.fxml;
     exports com.example.hostelscocora.aplication;
     opens com.example.hostelscocora.aplication to javafx.fxml;
