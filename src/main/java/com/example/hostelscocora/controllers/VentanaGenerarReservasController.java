@@ -9,12 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
@@ -220,7 +216,7 @@ public class VentanaGenerarReservasController {
         listViewHabitaciones.setCellFactory(new Callback<ListView<Habitacion>, ListCell<Habitacion>>() {
             @Override
             public ListCell<Habitacion> call(ListView<Habitacion> habitacionListView) {
-                return new celdaReservaHabitacion();
+                return new CeldaHabitacion();
             }
         });
 
@@ -230,35 +226,27 @@ public class VentanaGenerarReservasController {
             }
         });
 
+        dpFechaInicial.setDayCellFactory(dayCellFactoryInicial);
+        dpFechaFinal.setDayCellFactory(dayCellFactoryFinal);
+
     }
 
-    /**
-     * CLASE QUE SE ENCARGA DE DARLE FORMA A LOS ELEMENTOS DEL LISTVIEW DE HABITACIONES
-     */
-    private class celdaReservaHabitacion extends ListCell<Habitacion> {
-
-        private HBox contente;
-        private ImageView imagen;
-        private Text tipoHabitacion;
-
-        private celdaReservaHabitacion() {
-            imagen = new ImageView();
-            tipoHabitacion = new Text();
-            contente = new HBox(imagen, tipoHabitacion);
-            contente.setSpacing(10);
-        }
-
+    Callback<DatePicker, DateCell> dayCellFactoryInicial = dp -> new DateCell() {
         @Override
-        protected void updateItem(Habitacion habitacion, boolean empty) {
-            super.updateItem(habitacion, empty);
-            if (habitacion != null && !empty) {
-                imagen.setImage(new Image(habitacion.getImagen(), 100, 100, true, true));
-                tipoHabitacion.setText(habitacion.getTipoHabitacion().toString());
-                setGraphic(contente);
-            } else {
-                setGraphic(null);
+        public void updateItem(LocalDate item, boolean empty) {
+            if (dpFechaFinal.getValue() != null && item.isAfter(dpFechaFinal.getValue()) || item.isBefore(LocalDate.now())) {
+                this.setDisable(true);
             }
         }
-    }
+    };
+
+    Callback<DatePicker, DateCell> dayCellFactoryFinal = dp -> new DateCell() {
+        @Override
+        public void updateItem(LocalDate item, boolean empty) {
+            if (dpFechaInicial.getValue() != null && item.isBefore(dpFechaInicial.getValue()) || item.isBefore(LocalDate.now())) {
+                this.setDisable(true);
+            }
+        }
+    };
 
 }

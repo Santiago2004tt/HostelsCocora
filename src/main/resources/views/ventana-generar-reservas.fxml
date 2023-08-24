@@ -104,8 +104,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <DatePicker fx:id="dpFechaInicial" GridPane.rowIndex="1" />
-            <DatePicker fx:id="dpFechaFinal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="dpFechaInicial" editable="false" GridPane.rowIndex="1" />
+            <DatePicker fx:id="dpFechaFinal" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Fecha inicial">
                <font>
                   <Font name="Times New Roman Bold" size="15.0" />
