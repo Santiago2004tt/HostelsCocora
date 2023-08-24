@@ -1,6 +1,7 @@
 package com.example.hostelscocora.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Cama implements Serializable {
@@ -12,7 +13,7 @@ public class Cama implements Serializable {
     private byte peso;
     private String id;
     private String imagen;
-    private Habitacion habitacion;
+    private ArrayList<Habitacion> listaHabitaciones;
     private TIPO_CAMA tipoCama;
     private ESTADO_CAMA estadoCama;
 
@@ -29,13 +30,14 @@ public class Cama implements Serializable {
         this.imagen = imagen;
         this.tipoCama = tipoCama;
         this.estadoCama = estadoCama;
+        listaHabitaciones = new ArrayList<>();
     }
 
     /**
      * constructor vació
      */
     public Cama(){
-
+        listaHabitaciones = new ArrayList<>();
     }
 
     /**
@@ -66,12 +68,12 @@ public class Cama implements Serializable {
         this.imagen = imagen;
     }
 
-    public Habitacion getHabitacion() {
-        return habitacion;
+    public ArrayList<Habitacion> getListaHabitaciones() {
+        return listaHabitaciones;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    public void setListaHabitaciones(ArrayList<Habitacion> listaHabitaciones) {
+        this.listaHabitaciones = listaHabitaciones;
     }
 
     public TIPO_CAMA getTipoCama() {
@@ -106,5 +108,14 @@ public class Cama implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public boolean verificarDisponibilidad(Fecha fechaNueva) {
+        for (Habitacion habitacion: listaHabitaciones) {
+            if(habitacion.verificarFiltroFecha(fechaNueva)){
+                return true;
+            }
+        }
+        return false;
     }
 }

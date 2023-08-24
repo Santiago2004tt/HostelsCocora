@@ -42,7 +42,7 @@ public class ReservacionesClienteController {
     }
 
     private void mostrarPerfilClienteAction() {
-        //application.mostrarPerfilCliente(clienteLogueado)
+        application.mostrarPerfilCliente(clienteLogueado);
     }
 
     @FXML
@@ -51,7 +51,7 @@ public class ReservacionesClienteController {
     }
 
     private void accederDetallesReservaAction() {
-        //application.mostrarDetalleReserva(clienteLogueado, reservaSeleccionada);
+        application.mostrarDetallesReservacionesCliente(clienteLogueado, reservaSeleccionada);
     }
 
     @FXML

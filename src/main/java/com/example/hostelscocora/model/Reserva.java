@@ -102,4 +102,22 @@ public class Reserva implements Serializable {
     public int hashCode() {
         return Objects.hash(codigo);
     }
+
+    public DetalleReserva crearDetalleReserva(double subTotal, boolean isCamaExtra, Fecha fechaNueva) {
+        DetalleReserva detalleReserva = new DetalleReserva();
+        detalleReserva.setCamaExtra(isCamaExtra);
+        detalleReserva.setFecha(fechaNueva);
+        detalleReserva.setSubTotal(subTotal);
+        detalleReserva.setId(listaDetallesReserva.size()+1+"");
+        listaDetallesReserva.add(detalleReserva);
+        return detalleReserva;
+    }
+
+    public double obtenerTotal() {
+        double contador = 0;
+        for (DetalleReserva detalleReserva : listaDetallesReserva) {
+            contador += detalleReserva.getSubTotal();
+        }
+        return contador;
+    }
 }

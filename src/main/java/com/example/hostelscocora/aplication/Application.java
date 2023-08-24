@@ -143,6 +143,27 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarHabitacionReservaCliente(Cliente cliente) {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/habitacion-reserva-cliente-view.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            HabitacionReservaClienteController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     public static void main(String[] args) {

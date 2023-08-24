@@ -120,4 +120,13 @@ public class Habitacion implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public boolean verificarFiltroFecha(Fecha fechaNueva) {
+        for (DetalleReserva detalleReserva: this.listaDetalleReserva) {
+            if(detalleReserva.verificarFecha(fechaNueva)){
+                return false;
+            }
+        }
+        return true;
+    }
 }

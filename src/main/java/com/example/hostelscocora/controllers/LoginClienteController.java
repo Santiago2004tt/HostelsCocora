@@ -109,14 +109,14 @@ public class LoginClienteController {
      * @param clienteLogueado
      */
     private void mostrarCuentaCliente(Cliente clienteLogueado) {
-        //aplicacion.mostrarCuentaCliente(clienteLogueado);
+        application.mostrarPerfilCliente(clienteLogueado);
     }
 
     private void accederCrearCuentaAction() {
-        //aplicacion.
+        application.mostrarVentanaCrearCuentaCliente();
     }
 
     private void accederRecepcionistaAction() {
-        //aplicacion.
+        //
     }
 }
