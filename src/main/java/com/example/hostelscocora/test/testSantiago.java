@@ -1,5 +1,5 @@
 package com.example.hostelscocora.test;
-import com.example.hostelscocora.model.Fecha;
+import com.example.hostelscocora.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,6 +8,45 @@ import java.util.List;
 public class testSantiago {
 
     public static void main(String[] args) {
+        Hotel hotel = new Hotel("Hola");
+        Fecha fecha = new Fecha("2022-05-12","2022-05-20");
+        Fecha fechaPrueba = new Fecha("2022-05-21","2022-06-26");
+        Cama cama = new Cama();
+        cama.setPeso((byte) 1);
+        cama.setId("0");
+        cama.setEstadoCama(ESTADO_CAMA.OPERACION);
+        Cama cama2 = new Cama();
+        cama2.setPeso((byte) 1);
+        cama2.setId("1");
+        cama2.setEstadoCama(ESTADO_CAMA.OPERACION);
+        Habitacion habitacion = new Habitacion();
+        habitacion.setCapacidad((byte) 2);
+        DetalleReserva detalleReserva = new DetalleReserva();
+        detalleReserva.setFecha(fecha);
+        habitacion.getListaDetalleReserva().add(detalleReserva);
+        detalleReserva.setHabitacion(habitacion);
+        //hotel
+        hotel.getListaHabitaciones().add(habitacion);
+        hotel.getListaCamas().add(cama);
+        hotel.getListaCamas().add(cama2);
+
+        if(hotel.verificarCamasDisponibles((byte) 1,habitacion.getCapacidad(),fechaPrueba)){
+            System.out.println("se añadio");
+            hotel.aniadirCamas(habitacion,false,fechaPrueba);
+            DetalleReserva detalleReserva1 = new DetalleReserva();
+            detalleReserva1.setHabitacion(habitacion);
+            detalleReserva1.setFecha(fechaPrueba);
+            habitacion.getListaDetalleReserva().add(detalleReserva1);
+
+        }
+
+        //System.out.println(habitacion);
+        System.out.println(hotel.verificarCamasDisponibles((byte) 1,habitacion.getCapacidad(),fechaPrueba));
+
+        //System.out.println(hotel.verificarCamasDisponibles((byte)1, habitacion.getCapacidad(), fechaPrueba));
+    }
+
+    public void funcionesTest(){
         /*List<Fecha> ranges = new ArrayList<>();
         ranges.add(new Fecha("2022-05-12","2022-05-20"));
         ranges.add(new Fecha("2022-05-23","2022-06-26"));

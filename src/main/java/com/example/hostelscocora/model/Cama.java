@@ -111,11 +111,15 @@ public class Cama implements Serializable {
     }
 
     public boolean verificarDisponibilidad(Fecha fechaNueva) {
+        if(listaHabitaciones.isEmpty()){
+            return true;
+        }
         for (Habitacion habitacion: listaHabitaciones) {
             if(habitacion.verificarFiltroFecha(fechaNueva)){
-                return true;
+                    return true;
             }
         }
+
         return false;
     }
 }

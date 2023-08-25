@@ -119,20 +119,25 @@ public class HabitacionReservaClienteController {
         double subTotal = 0;
         boolean isCamaExtra = false;
         if(verificarDatos(cantidadPersonas)){
-            if(reserva == null){
-                reserva = modelFactoryController.crearReserva();
-            }
             if(cbCamaExtra.getValue().equals("Si")){
                 isCamaExtra = true;
             }
-            modelFactoryController.aniadirCamas(habitacionSeleccionada, isCamaExtra, fechaNueva);
-            subTotal =calcularPrecios(habitacionSeleccionada, isCamaExtra);
-            reserva.setCantidadPersonas(Integer.parseInt(cantidadPersonas));
-            DetalleReserva detalleReserva = reserva.crearDetalleReserva(subTotal, isCamaExtra, fechaNueva);
-            detalleReserva.setHabitacion(habitacionSeleccionada);
-            habitacionSeleccionada.getListaDetalleReserva().add(detalleReserva);
-            buscarHabitacionesDisponiblesAction();
-            mensajeInfo("Se completo la reserva", "Se completo la reserva, puedes agregar mas habitaciones");
+            if(modelFactoryController.verificarCamasDisponibles(isCamaExtra, habitacionSeleccionada.getCapacidad(), fechaNueva)){
+                if(reserva == null){
+                    reserva = modelFactoryController.crearReserva();
+                }
+                modelFactoryController.aniadirCamas(habitacionSeleccionada, isCamaExtra, fechaNueva); //se añade la cama
+                subTotal =calcularPrecios(habitacionSeleccionada, isCamaExtra);
+                reserva.setCantidadPersonas(Integer.parseInt(cantidadPersonas));
+                DetalleReserva detalleReserva = reserva.crearDetalleReserva(subTotal, isCamaExtra, fechaNueva);
+                detalleReserva.setHabitacion(habitacionSeleccionada);
+                habitacionSeleccionada.getListaDetalleReserva().add(detalleReserva);
+                buscarHabitacionesDisponiblesAction();
+                mensajeInfo("Se completo la reserva", "Se completo la reserva, puedes agregar mas habitaciones");
+
+            }else {
+                mensajeAlerta("Error en reserva", "no hay camas disponibles");
+            }
         }
     }
 
