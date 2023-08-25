@@ -38,12 +38,12 @@ public class PerfilClienteController {
 
     @FXML
     void mostrarReservas(ActionEvent event) {
-        //application
+        application.mostrarReservacionesCliente(clienteLogueado);
     }
 
     @FXML
     void mostrarHabitacionesDisponibles(ActionEvent event) {
-        //application
+        application.mostrarHabitacionReservaCliente(clienteLogueado);
     }
 
     @FXML
@@ -52,7 +52,7 @@ public class PerfilClienteController {
     }
 
     private void mostrarLoginClienteAcction() {
-        //application.mostrarLoginCliente();
+        application.mostrarVentanaClientelogin();
     }
 
     @FXML

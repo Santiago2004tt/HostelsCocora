@@ -46,7 +46,7 @@ public class VentanaReservasController {
         byte camasSimples = 0;
 
         for (Cama cama : modelFactoryController.obtenerCamas()) {
-            if (cama.getEstadoCama() == ESTADO_CAMA.OPERACION && cama.getHabitacion() == null) {
+            if (cama.getEstadoCama() == ESTADO_CAMA.OPERACION ) {
                 if (cama.getTipoCama() == TIPO_CAMA.CAMA_SIMPLE) {
                     camasSimples++;
                 } else {

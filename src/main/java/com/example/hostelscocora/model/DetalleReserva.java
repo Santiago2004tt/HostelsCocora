@@ -100,4 +100,11 @@ public class DetalleReserva implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public boolean verificarFecha(Fecha fechaNueva) {
+        if(this.fecha.isSobrepuesto(fechaNueva)){
+            return true;
+        }
+        return false;
+    }
 }

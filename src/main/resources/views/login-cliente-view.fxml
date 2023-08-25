@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.LoginController">
+<AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.LoginClienteController">
    <children>
       <Button fx:id="btnRecepcionista" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#accederRecepcionista" prefHeight="35.0" prefWidth="101.0" text="Recepcionista">
          <font>

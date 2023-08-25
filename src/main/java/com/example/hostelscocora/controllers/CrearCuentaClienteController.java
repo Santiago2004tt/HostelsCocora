@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
-public class CrearCuentaController {
+public class CrearCuentaClienteController {
 
     Application application;
     ModelFactoryController modelFactoryController;
@@ -89,7 +89,11 @@ public class CrearCuentaController {
 
     @FXML
     void accederLoginCliente(ActionEvent event) {
+       accederLoginClienteAction();
+    }
 
+    private void accederLoginClienteAction() {
+        application.mostrarVentanaClientelogin();
     }
 
     @FXML
@@ -115,8 +119,8 @@ public class CrearCuentaController {
         if(verificarEspacios(nombre, apellido, cedula, telefono, email, contrasenia)){
             try {
                 if(modelFactoryController.crearCuentaCliente(nombre, apellido, cedula, telefono, email, contrasenia)){
-                    mensajeAlerta("Creación de cuenta", "Se creo correctamente la cuenta");
-                    
+                    mensajeInfo("Creación de cuenta", "Se creo correctamente la cuenta");
+                    accederLoginClienteAction();
                 }
             }catch (ClienteException e){
                 mensajeAlerta("Error al crear cuenta", e.getMessage());
@@ -165,6 +169,13 @@ public class CrearCuentaController {
      */
     public static void mensajeAlerta(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    public static void mensajeInfo(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setContentText(mensaje);
         alert.showAndWait();

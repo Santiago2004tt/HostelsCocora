@@ -58,7 +58,7 @@ public class DetalleReservaClienteController {
 
     @FXML
     void accederReservas(ActionEvent event) {
-
+        application.mostrarReservacionesCliente(clienteLogueado);
     }
 
     @FXML
@@ -78,8 +78,8 @@ public class DetalleReservaClienteController {
     }
 
     private void mostrarDatos() {
-        Image image = new Image(detalleReservaSeleccionada.getHabitacion().getImagen());
-        ivImagen.setImage(image);
+        //Image image = new Image(detalleReservaSeleccionada.getHabitacion().getImagen());
+        //ivImagen.setImage(image);
         lblId.setText(detalleReservaSeleccionada.getHabitacion().getId());
         lblTipoHabitacion.setText(String.valueOf(detalleReservaSeleccionada.getHabitacion().getTipoHabitacion()));
         lblFechaInicio.setText(String.valueOf(detalleReservaSeleccionada.getFecha().getFechaInicio()));
@@ -88,10 +88,13 @@ public class DetalleReservaClienteController {
     }
 
     private void verificarCamaExtra() {
-        if (detalleReservaSeleccionada.isCamaExtra() == true){
+
+        if (detalleReservaSeleccionada.isCamaExtra()){
             lblCamaExtra.setText("Cama extra: Si");
+        }else {
+            lblCamaExtra.setText("Cama extra: No");
         }
-        lblCamaExtra.setText("Cama extra: No");
+
     }
 
     public void setApplication(Application application, Cliente clienteLogueado, Reserva reservaSeleccionada){

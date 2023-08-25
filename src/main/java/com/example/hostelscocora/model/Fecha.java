@@ -1,5 +1,6 @@
 package com.example.hostelscocora.model;
 
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +13,7 @@ public class Fecha implements Serializable {
      */
     private String fechaInicio;
     private String fechaFinal;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * constructor
@@ -50,6 +52,28 @@ public class Fecha implements Serializable {
         this.fechaFinal = fechaFinal;
     }
 
+    public LocalDate obtenerFechaInicio(){
+        return LocalDate.parse(fechaInicio, formatter);
+    }
+
+    public LocalDate obtenerFechaFinal(){
+
+        return LocalDate.parse(fechaFinal, formatter);
+    }
+
+    public boolean isSobrepuesto(Fecha fecha) {
+        LocalDate startDate = obtenerFechaInicio();
+        LocalDate endDate = obtenerFechaFinal();
+
+        return (startDate.isBefore(fecha.obtenerFechaFinal()) && endDate.isAfter(fecha.obtenerFechaInicio()))
+                || (fecha.obtenerFechaInicio().isBefore(endDate) && fecha.obtenerFechaFinal().isAfter(startDate));
+    }
 
 
+    public void crearFecha(LocalDate fechaInicio, LocalDate fechaFinal) {
+        String fechaInicial = fechaInicio.format(formatter);
+        String fechaFin = fechaFinal.format(formatter);
+        this.fechaInicio = fechaInicial;
+        this.fechaFinal = fechaFin;
+    }
 }

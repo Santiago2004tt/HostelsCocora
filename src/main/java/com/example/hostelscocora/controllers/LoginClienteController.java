@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
-public class LoginController {
+public class LoginClienteController {
 
     Application application;
     ModelFactoryController modelFactoryController;
@@ -109,14 +109,14 @@ public class LoginController {
      * @param clienteLogueado
      */
     private void mostrarCuentaCliente(Cliente clienteLogueado) {
-        //aplicacion.mostrarCuentaCliente(clienteLogueado);
+        application.mostrarPerfilCliente(clienteLogueado);
     }
 
     private void accederCrearCuentaAction() {
-        //aplicacion.
+        application.mostrarVentanaCrearCuentaCliente();
     }
 
     private void accederRecepcionistaAction() {
-        //aplicacion.
+        //
     }
 }

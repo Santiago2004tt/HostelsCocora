@@ -157,4 +157,54 @@ public class Hotel implements Serializable {
     public ArrayList<Reserva> obtenerReservaCliente(Cliente clienteLogueado) {
         return clienteLogueado.getListaReserva();
     }
+
+    public ArrayList<Habitacion> obtenerHabitacionesFiltroFecha(Fecha fechaNueva) {
+        ArrayList<Habitacion> listaHabitaciones = new ArrayList<>();
+        for (Habitacion habitacion: this.listaHabitaciones) {
+            if(habitacion.verificarFiltroFecha(fechaNueva)&&habitacion.getEstadoHabitacion().equals(ESTADO_HABITACION.OPERACION)){
+                listaHabitaciones.add(habitacion);
+            }
+        }
+        return listaHabitaciones;
+    }
+
+    public void aniadirCamas(Habitacion habitacionSeleccionada, boolean isCamaExtra, Fecha fechaNueva) {
+        int contador=0;
+        if(isCamaExtra){
+            contador=0;
+        }else {
+            contador = 1;
+        }
+        for (Cama cama: listaCamas ) {
+            if(cama.verificarDisponibilidad(fechaNueva)){
+                if(contador+ cama.getPeso()<=habitacionSeleccionada.getCapacidad()){
+                    contador+= cama.getPeso();
+                    habitacionSeleccionada.getListaCamas().add(cama);
+                    cama.getListaHabitaciones().add(habitacionSeleccionada);
+                    System.out.println("se agrego "+ cama.getId() );
+                }
+            }
+        }
+    }
+
+    public Reserva crearReserva() {
+        Reserva reserva = new Reserva();
+        reserva.setCodigo(listaReserva.size()+1+"");
+        return reserva;
+    }
+
+    public boolean verificarCamasDisponibles(byte contador, byte capacidad, Fecha fechaNueva) {
+        for (Cama cama:listaCamas) {
+            if(cama.verificarDisponibilidad(fechaNueva)&&contador<=capacidad){
+                if(contador+cama.getPeso()<=capacidad && cama.getEstadoCama().equals(ESTADO_CAMA.OPERACION)){
+                    contador+=cama.getPeso();
+                }
+            }
+        }
+        if(contador== capacidad){
+            System.out.println("entro");
+            return true;
+        }
+        return false;
+    }
 }
