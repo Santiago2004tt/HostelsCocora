@@ -163,10 +163,10 @@ public class HabitacionReservaClienteController {
             mensajeAlerta("Error al crear la reserva", "el campo de la cantidad de personas no es un numero");
             return false;
         }
-        if(cbCamaExtra==null){
+        if(cbCamaExtra.getValue()==null){
             mensajeAlerta("Error al crear la reserva", "El campo de camas esta vació");
             return false;
-        }
+        } 
         if(habitacionSeleccionada == null){
             mensajeAlerta("Error al crear la reserva", "La habitación no se a seleccionado");
             return false;
