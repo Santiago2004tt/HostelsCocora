@@ -61,9 +61,11 @@ public class HabitacionReservaClienteController {
     }
 
     private void accederPerfilClienteAction() {
-        double total = obtenerTotal();
-        reserva.setTotal(total);
-        clienteLogueado.getListaReserva().add(reserva);
+       if(reserva!=null){
+           double total = obtenerTotal();
+           reserva.setTotal(total);
+           clienteLogueado.getListaReserva().add(reserva);
+       }
         application.mostrarPerfilCliente(clienteLogueado);
     }
 
