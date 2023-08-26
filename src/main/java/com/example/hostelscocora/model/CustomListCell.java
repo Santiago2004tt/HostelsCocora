@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 /**
- * SE ENCARGA DE LA LA FORMA QUE SE DISPONEN LOS ELEMENTOS DEL LISTVIEW DE LA VENTANA RESERVAS
+ * SE ENCARGA DE LA LA FORMA EN QUE SE DISPONEN LOS ELEMENTOS DEL LISTVIEW DE LA VENTANA RESERVAS
  */
 public class CustomListCell extends ListCell<Habitacion> {
 
@@ -31,7 +31,7 @@ public class CustomListCell extends ListCell<Habitacion> {
         VBox vBox = new VBox(idHabitacion, estadoHabitacion);
         listviewReservas = new ListView<>();
         listviewReservas.setMaxHeight(200);
-        listviewReservas.setMaxWidth(200);
+        listviewReservas.setMaxWidth(150);
         listviewReservas.setCellFactory(new Callback<ListView<DetalleReserva>, ListCell<DetalleReserva>>() {
             @Override
             public ListCell call(ListView listView) {
@@ -39,7 +39,7 @@ public class CustomListCell extends ListCell<Habitacion> {
             }
         });
         content = new HBox(imagen, vBox, listviewReservas);
-        content.setSpacing(10);
+        content.setSpacing(30);
     }
 
     @Override

@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.VentanaHabitacionesController">
    <children>
-      <Button layoutX="581.0" layoutY="465.0" mnemonicParsing="false" text="Actualizar">
+      <Button fx:id="btnActualizar" layoutX="581.0" layoutY="465.0" mnemonicParsing="false" onAction="#actualizarAction" text="Actualizar">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>
@@ -67,7 +67,7 @@
             <TextField fx:id="tfCantidadReservas" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button layoutX="16.0" layoutY="558.0" mnemonicParsing="false" text="Regresar">
+      <Button fx:id="btnRegresar" layoutX="16.0" layoutY="558.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>

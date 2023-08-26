@@ -1,6 +1,7 @@
 package com.example.hostelscocora.model;
 
 import com.example.hostelscocora.exceptions.ClienteException;
+import com.example.hostelscocora.exceptions.RecepcionistaException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -119,6 +120,15 @@ public class Hotel implements Serializable {
         throw new ClienteException("El usuario o la contraseña no existen o están incorrectos");
     }
 
+    public boolean verificarUsuarioRecepcionista(String usuario, String contrasenia) throws RecepcionistaException {
+        for (Recepcionista recepcionista: listaRecepcionistas) {
+            if(recepcionista.verificarCuenta(usuario, contrasenia)){
+                return true;
+            }
+        }
+        throw new RecepcionistaException("El usuario o la contraseña no existen o están incorrectos");
+    }
+
     public Cliente obtenerClienteLogueado(String cedula) throws ClienteException {
         for (Cliente cliente:listaClientes) {
             if (cliente.getCedula().equals(cedula)){
@@ -126,6 +136,15 @@ public class Hotel implements Serializable {
             }
         }
         throw new ClienteException("El cliente no existe");
+    }
+
+    public Recepcionista obtenerRecepcionistaLogueado(String usuario) throws RecepcionistaException {
+        for (Recepcionista recepcionista : listaRecepcionistas) {
+            if (recepcionista.getUsuario().equals(usuario)) {
+                return recepcionista;
+            }
+        }
+        throw new RecepcionistaException("El cliente no existe");
     }
 
     public boolean crearCuentaCliente(String nombre, String apellido, String cedula, String telefono, String email, String contrasenia) throws ClienteException {

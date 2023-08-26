@@ -1,5 +1,6 @@
 package com.example.hostelscocora.controllers;
 
+import com.example.hostelscocora.aplication.Application;
 import com.example.hostelscocora.exceptions.ClienteException;
 import com.example.hostelscocora.exceptions.ValorRequeridoException;
 import com.example.hostelscocora.model.*;
@@ -14,7 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 public class VentanaGenerarReservasController {
@@ -29,16 +31,13 @@ public class VentanaGenerarReservasController {
     private Button btnCrearCliente;
 
     @FXML
-    private Button btnCrearReserva;
-
-    @FXML
     private Button btnFiltrar;
 
     @FXML
     private Button btnRegresar;
 
     @FXML
-    private ComboBox<String> cbCamaAdicional;
+    private ComboBox<CAMA_EXTRA> cbCamaAdicional;
 
     @FXML
     private ComboBox<TIPO_HABITACION> cbTipoHabitacion;
@@ -67,11 +66,17 @@ public class VentanaGenerarReservasController {
     @FXML
     private TextField tfNombre;
 
-    ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
-    ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
-    Cliente cliente = null;
-    Habitacion habitacionSeleccionada = null;
-    Reserva reserva = null;
+    /**
+     * ATRIBUTOS
+     */
+    private Application application;
+    private String ventanaAnterior;
+    private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
+    private final ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
+    private final Hotel hotel = modelFactoryController.getHotel();
+    private Cliente cliente = null;
+    private Habitacion habitacionSeleccionada = null;
+    private Reserva reserva = null;
 
     /**
      * DEVUELVE UNA LISTA DE HABITACIONES FILTRADA EN FECHA INICIO Y FECHA FINAL
@@ -81,14 +86,21 @@ public class VentanaGenerarReservasController {
      */
     private ObservableList<Habitacion> getListaHabitacionesData(LocalDate fechaInicial, LocalDate fechaFinal) {
         listaHabitacionesData.clear();
-        listaHabitacionesData.addAll(modelFactoryController.obtenerHabitaciones().stream().filter( x -> {
+        listaHabitacionesData.addAll(filtrarHabitacionesFecha(fechaInicial, fechaFinal));
+        listaHabitacionesData.removeAll();
+        if (cbTipoHabitacion.getValue() != null) {
+            filtrarHabitacionesTipoHabitacion();
+        }
+        return listaHabitacionesData;
+    }
+
+    private List<Habitacion> filtrarHabitacionesFecha(LocalDate fechaInicial, LocalDate fechaFinal) {
+        return (modelFactoryController.obtenerHabitaciones().stream().filter( x -> {
             for (DetalleReserva detalleReserva : x.getListaDetalleReserva()) {
                 Fecha fecha = detalleReserva.getFecha();
 
-                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-                LocalDate fechIni = LocalDate.parse(fecha.getFechaInicio(), dateTimeFormatter);
-                LocalDate fechFin = LocalDate.parse(fecha.getFechaFinal(), dateTimeFormatter);
+                LocalDate fechIni = fecha.obtenerFechaInicio();
+                LocalDate fechFin = fecha.obtenerFechaFinal();
 
                 if (fechaInicial.isAfter(fechIni.minusDays(1)) && fechaInicial.isBefore(fechFin.plusDays(1)) ||
                         fechaFinal.isAfter(fechIni.minusDays(1)) && fechaFinal.isBefore(fechFin.plusDays(1))) {
@@ -97,17 +109,27 @@ public class VentanaGenerarReservasController {
             }
             return true;
         }).toList());
-        return listaHabitacionesData;
     }
 
+    private void filtrarHabitacionesTipoHabitacion() {
+        List<Habitacion> lista = listaHabitacionesData.stream()
+                .filter(x -> x.getTipoHabitacion() == cbTipoHabitacion.getValue()).toList();
+        listaHabitacionesData.clear();
+        listaHabitacionesData.addAll(lista);
+    }
+
+    /**
+     * ACTIONS DE LOS BOTONES
+     * @param event
+     */
     @FXML
     void agregarReservaAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void crearReservaAction(ActionEvent event) {
-
+        try {
+            agregarReserva();
+            MensajeUtil.mensajeInformacion("Éxito", "Se agrego correctamente a la reserva");
+        } catch (ValorRequeridoException e) {
+            MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
+        }
     }
 
     @FXML
@@ -129,7 +151,7 @@ public class VentanaGenerarReservasController {
 
     @FXML
     void crearClienteAction(ActionEvent event) {
-
+        application.mostrarCrearCliente("ventana-generar-reservas");
     }
 
     @FXML
@@ -142,23 +164,72 @@ public class VentanaGenerarReservasController {
         }
     }
 
-    // ESTA FUNCION NO SE ENCUENTRA FINALIZADA
+    @FXML
+    void regresarAction(ActionEvent event) {
+        if (ventanaAnterior.equals("ventana-reservas")) {
+            application.mostrarVentanaReservas();
+        } else if (ventanaAnterior.equals("ventana-administrar")) {
+            application.mostrarVentanaAdministrar();
+        }
+    }
+
+    /**
+     * METODOS PARA QUE FUNCIONEN LOS ACTIONS
+     * @throws ValorRequeridoException
+     */
     private void agregarReserva() throws ValorRequeridoException {
         if (habitacionSeleccionada == null)
             throw new ValorRequeridoException("Seleccione una habitación");
+        if (cliente == null)
+            throw new ValorRequeridoException("Es necesario que busque el cliente");
         if (dpFechaInicial.getValue() == null)
             throw new ValorRequeridoException("El valor fecha inicio es requerido");
         if (dpFechaFinal.getValue() == null)
             throw new ValorRequeridoException("El valor fecha final es requerido");
         if (cbCamaAdicional.getValue() == null)
-            throw new ValorRequeridoException("El valor cama extra es requerido");
-        if (cliente == null)
-            throw new ValorRequeridoException("Es necesario que busque el cliente");
+            throw new ValorRequeridoException("El campo cama extra es requerido");
         if (reserva == null) {
-            reserva = new Reserva();
+            reserva = hotel.crearReserva();
             reserva.setCliente(cliente);
+            hotel.getListaReserva().add(reserva);
+            cliente.getListaReserva().add(reserva);
         }
-        DetalleReserva detalleReserva = new DetalleReserva();
+
+        double subTotal = calcularSubtotal(habitacionSeleccionada, cbCamaAdicional.getValue(), dpFechaInicial.getValue(), dpFechaFinal.getValue());
+        Fecha fecha = new Fecha(dpFechaInicial.getValue().toString(), dpFechaFinal.getValue().toString());
+
+        DetalleReserva detalleReserva = reserva.crearDetalleReserva(subTotal, cbCamaAdicional.getValue().getBoolean(), fecha);
+        detalleReserva.setHabitacion(habitacionSeleccionada);
+        habitacionSeleccionada.getListaDetalleReserva().add(detalleReserva);
+
+        listViewHabitaciones.getSelectionModel().clearSelection();
+        listaHabitacionesData.remove(habitacionSeleccionada);
+
+        habitacionSeleccionada = null;
+
+        modelFactoryController.guardarResourceXmlService();
+        modelFactoryController.guardarResourceSerializableService();
+    }
+
+    /**
+     * CALCULA EL SUBTOTAL QUE DEBE TENER UN DETALLE RESERVA
+     * @param habitacion
+     * @param isCamaExtra
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return
+     */
+    private Double calcularSubtotal(Habitacion habitacion, CAMA_EXTRA isCamaExtra, LocalDate fechaInicial, LocalDate fechaFinal) {
+        int cantidadDias = (int) ChronoUnit.DAYS.between(fechaInicial, fechaFinal);
+        double subTotal = 50000;
+
+        if (habitacion.getTipoHabitacion() == TIPO_HABITACION.HABITACION_SIMPLE)
+            subTotal += 50000;
+
+        if (isCamaExtra.getBoolean())
+            subTotal += 25000;
+
+        return subTotal * cantidadDias;
     }
 
     /**
@@ -205,8 +276,14 @@ public class VentanaGenerarReservasController {
     @FXML
     void initialize() {
 
-        cbCamaAdicional.setItems(FXCollections.observableArrayList("Sí", "No"));
+        cbCamaAdicional.setItems(FXCollections.observableArrayList(CAMA_EXTRA.values()));
         cbCamaAdicional.setPromptText("Seleccionar");
+        cbCamaAdicional.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                cbCamaAdicional.setPromptText("Seleccionar");
+            }
+        });
+
 
         cbTipoHabitacion.setItems(FXCollections.observableArrayList(TIPO_HABITACION.values()));
         cbTipoHabitacion.setPromptText("Seleccionar");
@@ -248,5 +325,10 @@ public class VentanaGenerarReservasController {
             }
         }
     };
+
+    public void setApplication(Application application, String ventanaAnterior) {
+        this.application = application;
+        this.ventanaAnterior = ventanaAnterior;
+    }
 
 }

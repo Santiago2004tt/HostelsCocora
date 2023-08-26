@@ -1,5 +1,6 @@
 package com.example.hostelscocora.controllers;
 
+import com.example.hostelscocora.aplication.Application;
 import com.example.hostelscocora.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,9 @@ public class VentanaReservasController {
     private Button btnRealizarReserva;
 
     @FXML
+    private Button btnRegresar;
+
+    @FXML
     private Label lblCamasDobles;
 
     @FXML
@@ -25,18 +29,24 @@ public class VentanaReservasController {
     @FXML
     private ListView<Habitacion> listViewHabitaciones;
 
+    private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
+    private Application application;
 
     private ObservableList<Habitacion> getListaHabitacionesData() {
         listaHabitacionesData.addAll(modelFactoryController.obtenerHabitaciones());
         return listaHabitacionesData;
     }
 
-    private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
     @FXML
     void realizarReservaAction(ActionEvent event) {
+        application.mostrarGenerarReservas("ventana-reservas");
+    }
 
+    @FXML
+    void regresarAction(ActionEvent event) {
+        application.mostrarVentanaAdministrar();
     }
 
     @FXML
@@ -67,5 +77,9 @@ public class VentanaReservasController {
                 return new CustomListCell();
             }
         });
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
     }
 }

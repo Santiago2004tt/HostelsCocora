@@ -1,5 +1,7 @@
 package com.example.hostelscocora.model;
 
+import com.example.hostelscocora.exceptions.RecepcionistaException;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -49,8 +51,20 @@ public class Recepcionista implements Serializable {
         this.contrasenia = contrasenia;
     }
 
+    /** METODOS DE EMPLEADO
+     */
+    public boolean verificarCuenta(String usuario, String contrasenia) throws RecepcionistaException {
+        if (usuario.isEmpty())
+            throw new RecepcionistaException("El campo de usuario es requerido");
+        if (contrasenia.isEmpty())
+            throw new RecepcionistaException("El campo contraseña es requerido");
+
+        return this.usuario.equals(usuario) && this.contrasenia.equals(contrasenia);
+    }
+
+
     /**
-     * método equals con usuario y contrasenia
+     * Método equals con usuario y contrasenia
      * @param o
      * @return
      */

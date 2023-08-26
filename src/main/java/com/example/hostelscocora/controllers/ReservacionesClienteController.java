@@ -3,7 +3,6 @@ package com.example.hostelscocora.controllers;
 import com.example.hostelscocora.aplication.Application;
 import com.example.hostelscocora.model.Cliente;
 import com.example.hostelscocora.model.Reserva;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
