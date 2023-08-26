@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 
 public class HabitacionReservaClienteController {
@@ -59,9 +61,11 @@ public class HabitacionReservaClienteController {
     }
 
     private void accederPerfilClienteAction() {
-        double total = obtenerTotal();
-        reserva.setTotal(total);
-        clienteLogueado.getListaReserva().add(reserva);
+       if(reserva!=null){
+           double total = obtenerTotal();
+           reserva.setTotal(total);
+           clienteLogueado.getListaReserva().add(reserva);
+       }
         application.mostrarPerfilCliente(clienteLogueado);
     }
 
@@ -142,7 +146,9 @@ public class HabitacionReservaClienteController {
     }
 
     private double calcularPrecios(Habitacion habitacionSeleccionada, boolean isCamaExtra) {
-        double subTotal=50000;
+        long diferenciaEnDias = ChronoUnit.DAYS.between(dpFechaInicio.getValue(), dpFechaFinal.getValue());
+        int diferenciaEnDiasInt = (int) diferenciaEnDias;
+        double subTotal=50000 ;
 
         if(habitacionSeleccionada.getTipoHabitacion().equals(TIPO_HABITACION.HABITACION_DOBLE)){
             subTotal += 50000;
@@ -151,7 +157,7 @@ public class HabitacionReservaClienteController {
             subTotal+=25000;
         }
 
-        return subTotal;
+        return subTotal * diferenciaEnDiasInt;
     }
 
     private boolean verificarDatos(String cantidadPersonas) {
@@ -159,10 +165,10 @@ public class HabitacionReservaClienteController {
             mensajeAlerta("Error al crear la reserva", "el campo de la cantidad de personas no es un numero");
             return false;
         }
-        if(cbCamaExtra==null){
+        if(cbCamaExtra.getValue()==null){
             mensajeAlerta("Error al crear la reserva", "El campo de camas esta vació");
             return false;
-        }
+        } 
         if(habitacionSeleccionada == null){
             mensajeAlerta("Error al crear la reserva", "La habitación no se a seleccionado");
             return false;
