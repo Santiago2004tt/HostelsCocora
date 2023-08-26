@@ -117,6 +117,6 @@ public class LoginClienteController {
     }
 
     private void accederRecepcionistaAction() {
-        //
+        application.mostrarVentanaLoginRecepcionista();
     }
 }

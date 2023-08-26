@@ -69,7 +69,7 @@ public class ModelFactoryController implements Runnable{
     }
 
     public ModelFactoryController() {
-        //this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
+        this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
 
         if(hotel == null) {
             inicializarDatos();
@@ -79,12 +79,12 @@ public class ModelFactoryController implements Runnable{
         }
     }
 
-    private void guardarResourceSerializableService() {
+    public void guardarResourceSerializableService() {
         guardarSerializable = new Thread(this);
         guardarSerializable.start();
     }
 
-    private void guardarResourceXmlService() {
+    public void guardarResourceXmlService() {
         guardarXML = new Thread(this);
         guardarXML.start();
     }
@@ -152,6 +152,10 @@ public class ModelFactoryController implements Runnable{
 
     public boolean verificarUsuario(String cedula, String contrasenia) throws ClienteException {
         return hotel.verificarUsuario(cedula, contrasenia);
+    }
+
+    public boolean verificarUsuarioRecepcionista(String usuario, String contrasenia) throws RecepcionistaException {
+        return hotel.verificarUsuarioRecepcionista(usuario, contrasenia);
     }
 
     public Cliente obtenerClienteLogueado(String cedula) throws ClienteException {

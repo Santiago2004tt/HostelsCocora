@@ -117,7 +117,7 @@ public class Reserva implements Serializable {
         detalleReserva.setCamaExtra(isCamaExtra);
         detalleReserva.setFecha(fechaNueva);
         detalleReserva.setSubTotal(subTotal);
-        detalleReserva.setId(listaDetallesReserva.size()+1+"");
+        detalleReserva.setId(this.codigo + listaDetallesReserva.size()+1);
         listaDetallesReserva.add(detalleReserva);
         return detalleReserva;
     }

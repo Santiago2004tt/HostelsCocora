@@ -13,8 +13,6 @@ public class Fecha implements Serializable {
      */
     private String fechaInicio;
     private String fechaFinal;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     /**
      * constructor
      * @param fechaInicio
@@ -53,11 +51,12 @@ public class Fecha implements Serializable {
     }
 
     public LocalDate obtenerFechaInicio(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(fechaInicio, formatter);
     }
 
     public LocalDate obtenerFechaFinal(){
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(fechaFinal, formatter);
     }
 
@@ -71,6 +70,7 @@ public class Fecha implements Serializable {
 
 
     public void crearFecha(LocalDate fechaInicio, LocalDate fechaFinal) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fechaInicial = fechaInicio.format(formatter);
         String fechaFin = fechaFinal.format(formatter);
         this.fechaInicio = fechaInicial;

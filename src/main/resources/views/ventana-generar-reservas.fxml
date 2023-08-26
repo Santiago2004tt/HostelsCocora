@@ -19,7 +19,7 @@
             <Font name="Times New Roman Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegresar" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" text="Regresar">
+      <Button fx:id="btnRegresar" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>
@@ -79,12 +79,6 @@
                </font>
             </Label>
             <ComboBox fx:id="cbCamaAdicional" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Tipo habitacion" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Times New Roman Bold" size="15.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="cbTipoHabitacion" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Button fx:id="btnCrearCliente" mnemonicParsing="false" onAction="#crearClienteAction" text="Crear Cliente" GridPane.columnIndex="3">
                <font>
                   <Font name="Times New Roman Bold" size="15.0" />
@@ -93,7 +87,7 @@
          </children>
       </GridPane>
       <ListView fx:id="listViewHabitaciones" layoutX="31.0" layoutY="65.0" prefHeight="244.0" prefWidth="292.0" />
-      <GridPane layoutX="399.0" layoutY="120.0" prefHeight="134.0" prefWidth="459.0">
+      <GridPane layoutX="397.0" layoutY="99.0" prefHeight="175.0" prefWidth="459.0">
         <columnConstraints>
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -102,6 +96,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <DatePicker fx:id="dpFechaInicial" editable="false" GridPane.rowIndex="1" />
@@ -121,14 +116,15 @@
                   <Font name="Times New Roman Bold" size="15.0" />
                </font>
             </Button>
+            <Label text="Tipo habitacion (opcional)" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Times New Roman Bold" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbTipoHabitacion" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="btnAgregarReserva" layoutX="593.0" layoutY="560.0" mnemonicParsing="false" onAction="#agregarReservaAction" text="Agregar Reserva">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnCrearReserva" layoutX="742.0" layoutY="560.0" mnemonicParsing="false" onAction="#crearReservaAction" text="Crear Reserva">
+      <Button fx:id="btnAgregarReserva" layoutX="739.0" layoutY="560.0" mnemonicParsing="false" onAction="#agregarReservaAction" text="Agregar Reserva">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>

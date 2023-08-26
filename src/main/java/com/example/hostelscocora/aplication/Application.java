@@ -13,10 +13,12 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
 
     Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        mostrarVentanaClientelogin();
+//        mostrarVentanaClientelogin();
+        mostrarVentanaLoginRecepcionista();
     }
 
     /**
@@ -69,6 +71,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * ventana para mostrar perfil de los clientes
+     *
      * @param cliente
      */
     public void mostrarPerfilCliente(Cliente cliente) {
@@ -94,6 +97,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * muestra las reservaciones
+     *
      * @param cliente
      */
     public void mostrarReservacionesCliente(Cliente cliente) {
@@ -119,6 +123,7 @@ public class Application extends javafx.application.Application {
 
     /**
      * muestra los detalles de cada reservacion
+     *
      * @param cliente
      * @param reserva
      */
@@ -164,7 +169,152 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarVentanaLoginRecepcionista() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-login-recepcionista.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaLoginRecepcionista controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void mostrarVentanaAdministrar() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-administrar.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaAdministrarController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarVentanaReservas() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-reservas.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaReservasController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarGenerarReservas(String ventanaAnterior) {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-generar-reservas.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaGenerarReservasController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, ventanaAnterior);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarCrearCliente(String ventanaAnterior) {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-crear-cliente.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            CrearClienteController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, ventanaAnterior);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarVentanaHabitaciones() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-habitaciones.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaHabitacionesController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarVentanaCamas() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-camas.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaCamasController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
