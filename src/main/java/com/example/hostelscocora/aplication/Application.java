@@ -141,7 +141,7 @@ public class Application extends javafx.application.Application {
             //Carga los controladores
             DetalleReservaClienteController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente, reserva);
-            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            Scene scene = new Scene(rootLayout);//Carga la escena P rincipal. En este caso carga el anchor-pane
             // de cambiar de ventana con escape
             stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
             stage.show();//Muestra el escenario principal
