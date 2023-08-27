@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application extends javafx.application.Application {
 
@@ -232,7 +234,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarVentanaReservas() {
+    public void mostrarVentanaReservas(List<String> historial) {
         try {
             stage.close();
             stage = new Stage();
@@ -243,7 +245,7 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             //Carga los controladores
             VentanaReservasController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this);
+            controller.setApplication(this, historial);
             Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
             // de cambiar de ventana con escape
             stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
@@ -253,7 +255,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarGenerarReservas(String ventanaAnterior) {
+    public void mostrarGenerarReservas(List<String> historial) {
         try {
             stage.close();
             stage = new Stage();
@@ -264,7 +266,7 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             //Carga los controladores
             VentanaGenerarReservasController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this, ventanaAnterior);
+            controller.setApplication(this, historial);
             Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
             // de cambiar de ventana con escape
             stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
@@ -274,7 +276,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCrearCliente(String ventanaAnterior) {
+    public void mostrarCrearCliente(List<String> historial) {
         try {
             stage.close();
             stage = new Stage();
@@ -285,7 +287,7 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             //Carga los controladores
             CrearClienteController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this, ventanaAnterior);
+            controller.setApplication(this, historial);
             Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
             // de cambiar de ventana con escape
             stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
