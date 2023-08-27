@@ -10,7 +10,7 @@ public class testSantiago {
     public static void main(String[] args) {
         Hotel hotel = new Hotel("Hola");
         Fecha fecha = new Fecha("2022-05-12","2022-05-20");
-        Fecha fechaPrueba = new Fecha("2022-05-21","2022-06-26");
+        Fecha fechaPrueba = new Fecha("2022-05-21","2022-06-23");
         Cama cama = new Cama();
         cama.setPeso((byte) 1);
         cama.setId("0");
@@ -23,16 +23,16 @@ public class testSantiago {
         habitacion.setCapacidad((byte) 2);
         DetalleReserva detalleReserva = new DetalleReserva();
         detalleReserva.setFecha(fecha);
-        habitacion.getListaDetalleReserva().add(detalleReserva);
-        detalleReserva.setHabitacion(habitacion);
+        //habitacion.getListaDetalleReserva().add(detalleReserva);
+        //detalleReserva.setHabitacion(habitacion);
         //hotel
         hotel.getListaHabitaciones().add(habitacion);
         hotel.getListaCamas().add(cama);
         hotel.getListaCamas().add(cama2);
 
-        if(hotel.verificarCamasDisponibles((byte) 1,habitacion.getCapacidad(),fechaPrueba)){
+        if(hotel.verificarCamasDisponibles((byte) 1,habitacion.getCapacidad(),fecha)){
             System.out.println("se añadio");
-            hotel.aniadirCamas(habitacion,false,fechaPrueba);
+            hotel.aniadirCamas(habitacion,false,fecha);
             DetalleReserva detalleReserva1 = new DetalleReserva();
             detalleReserva1.setHabitacion(habitacion);
             detalleReserva1.setFecha(fechaPrueba);

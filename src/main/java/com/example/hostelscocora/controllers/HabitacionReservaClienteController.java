@@ -64,6 +64,8 @@ public class HabitacionReservaClienteController {
            double total = obtenerTotal();
            reserva.setTotal(total);
            clienteLogueado.getListaReserva().add(reserva);
+           modelFactoryController.guardarResourceSerializableService();
+           modelFactoryController.guardarResourceXmlService();
        }
         application.mostrarPerfilCliente(clienteLogueado);
     }
@@ -84,6 +86,7 @@ public class HabitacionReservaClienteController {
         if(verificarEspacios(fechaInicio, fechaFinal)){
             if(fechaInicio.isBefore(fechaFinal)){
                 LocalDate fechaHoy = LocalDate.from(LocalDateTime.now());
+                fechaHoy=fechaHoy.minusDays(1);
                 if(fechaHoy.isBefore(fechaInicio)){
                     fechaNueva = new Fecha();
                     fechaNueva.crearFecha(fechaInicio, fechaFinal);

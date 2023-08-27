@@ -50,7 +50,9 @@ public class ReservacionesClienteController {
     }
 
     private void accederDetallesReservaAction() {
-        application.mostrarDetallesReservacionesCliente(clienteLogueado, reservaSeleccionada);
+        if(reservaSeleccionada != null){
+            application.mostrarDetallesReservacionesCliente(clienteLogueado, reservaSeleccionada);
+        }
     }
 
     @FXML

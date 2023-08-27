@@ -71,7 +71,7 @@ public class ModelFactoryController implements Runnable{
     }
 
     public ModelFactoryController() {
-            this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
+        this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
 
         if(hotel == null) {
             inicializarDatos();
@@ -92,42 +92,67 @@ public class ModelFactoryController implements Runnable{
     }
 
     private void inicializarDatos() {
-        hotel = new Hotel("Hola");
+        hotel = new Hotel("Hostels Cocora");
+        inicializarHabitaciones();
+        inicializarCamas();
+        inicializarRecepcionistaClientes();
+    }
 
-        Habitacion habitacion = new Habitacion();
-        habitacion.setCapacidad((byte) 3);
-        habitacion.setId("0");
-        habitacion.setTipoHabitacion(TIPO_HABITACION.HABITACION_DOBLE);
-        habitacion.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
-        Habitacion habitacion2 = new Habitacion();
-        habitacion2.setCapacidad((byte) 2);
-        habitacion2.setId("1");
-        habitacion2.setTipoHabitacion(TIPO_HABITACION.HABITACION_SIMPLE);
-        habitacion2.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
-        Habitacion habitacion3 = new Habitacion();
-        habitacion3.setId("2");
-        habitacion3.setCapacidad((byte) 3);
-        habitacion3.setTipoHabitacion(TIPO_HABITACION.HABITACION_DOBLE);
-        habitacion3.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
-        hotel.getListaHabitaciones().add(habitacion);
-        hotel.getListaHabitaciones().add(habitacion2);
-        hotel.getListaHabitaciones().add(habitacion3);
+    private void inicializarRecepcionistaClientes() {
+        Recepcionista recepcionista = new Recepcionista();
+        recepcionista.setUsuario("admin");
+        recepcionista.setContrasenia("1");
+        hotel.getListaRecepcionistas().add(recepcionista);
+        Cliente cliente = new Cliente();
+        cliente.setNombre("Jeremias");
+        cliente.setApellido("Garmendia");
+        cliente.setCedula("1");
+        cliente.setContrasenia("1");
+        cliente.setTelefono("3213412321");
+        cliente.setEmail("jere@");
+        hotel.getListaClientes().add(cliente);
+    }
 
-        for (int i = 0; i < 3; i++) {
+    private void inicializarCamas() {
+        for (int i = 1; i <= 40; i++) {
             Cama cama = new Cama();
-            cama.setId(i+"");
+            cama.setId("c"+i);
             cama.setTipoCama(TIPO_CAMA.CAMA_SIMPLE);
             cama.setPeso((byte) 1);
             cama.setEstadoCama(ESTADO_CAMA.OPERACION);
+            cama.setImagen("cama-simple.png");
             hotel.getListaCamas().add(cama);
         }
+        for (int i = 41; i <= 45; i++) {
+            Cama cama = new Cama();
+            cama.setId("c"+i);
+            cama.setTipoCama(TIPO_CAMA.CAMA_DOBLE);
+            cama.setPeso((byte) 2);
+            cama.setEstadoCama(ESTADO_CAMA.OPERACION);
+            cama.setImagen("cama-doble.png");
+            hotel.getListaCamas().add(cama);
+        }
+    }
 
-
-        Cliente cliente = new Cliente();
-        cliente.setNombre("Jere");
-        cliente.setCedula("1");
-        cliente.setContrasenia("1");
-        hotel.getListaClientes().add(cliente);
+    private void inicializarHabitaciones() {
+        for(int i= 1; i<=10; i++ ){
+            Habitacion habitacion = new Habitacion();
+            habitacion.setCapacidad((byte) 2);
+            habitacion.setId("h"+i);
+            habitacion.setTipoHabitacion(TIPO_HABITACION.HABITACION_SIMPLE);
+            habitacion.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
+            habitacion.setImagen("habitacion-simple.png");
+            hotel.getListaHabitaciones().add(habitacion);
+        }
+        for (int i = 11; i<=20; i++){
+            Habitacion habitacion = new Habitacion();
+            habitacion.setCapacidad((byte) 3);
+            habitacion.setId("h"+i);
+            habitacion.setTipoHabitacion(TIPO_HABITACION.HABITACION_DOBLE);
+            habitacion.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
+            habitacion.setImagen("habitacion-doble.png");
+            hotel.getListaHabitaciones().add(habitacion);
+        }
     }
 
     public ArrayList<Habitacion> obtenerHabitaciones() {

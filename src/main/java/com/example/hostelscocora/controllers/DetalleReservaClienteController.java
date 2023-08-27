@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
@@ -77,8 +78,8 @@ public class DetalleReservaClienteController {
     }
 
     private void mostrarDatos() {
-        //Image image = new Image(detalleReservaSeleccionada.getHabitacion().getImagen());
-        //ivImagen.setImage(image);
+        Image image = new Image(detalleReservaSeleccionada.getHabitacion().getImagen());
+        ivImagen.setImage(image);
         lblId.setText(detalleReservaSeleccionada.getHabitacion().getId());
         lblTipoHabitacion.setText(String.valueOf(detalleReservaSeleccionada.getHabitacion().getTipoHabitacion()));
         lblFechaInicio.setText(String.valueOf(detalleReservaSeleccionada.getFecha().getFechaInicio()));
