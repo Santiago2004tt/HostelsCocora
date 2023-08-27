@@ -16,6 +16,7 @@ import javafx.util.Callback;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +77,7 @@ public class VentanaGenerarReservasController {
      * ATRIBUTOS
      */
     private Application application;
-    private String ventanaAnterior;
+    private List<String> historial;
     private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private final ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
     private final Hotel hotel = modelFactoryController.getHotel();
@@ -157,7 +158,8 @@ public class VentanaGenerarReservasController {
 
     @FXML
     void crearClienteAction(ActionEvent event) {
-        application.mostrarCrearCliente("ventana-generar-reservas");
+        historial.add("ventana-generar-reservas");
+        application.mostrarCrearCliente(historial);
     }
 
     @FXML
@@ -172,9 +174,12 @@ public class VentanaGenerarReservasController {
 
     @FXML
     void regresarAction(ActionEvent event) {
-        if (ventanaAnterior.equals("ventana-reservas")) {
-            application.mostrarVentanaReservas();
-        } else if (ventanaAnterior.equals("ventana-administrar")) {
+        int ultimo = historial.size() - 1;
+        if (historial.get(ultimo).equals("ventana-reservas")) {
+            historial.remove(ultimo);
+            application.mostrarVentanaReservas(historial);
+        } else if (historial.get(ultimo).equals("ventana-administrar")) {
+            historial.remove(ultimo);
             application.mostrarVentanaAdministrar();
         }
     }
@@ -348,9 +353,9 @@ public class VentanaGenerarReservasController {
         }
     };
 
-    public void setApplication(Application application, String ventanaAnterior) {
+    public void setApplication(Application application, List<String> historial) {
         this.application = application;
-        this.ventanaAnterior = ventanaAnterior;
+        this.historial = historial;
     }
 
 }
