@@ -13,6 +13,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class VentanaReservasController {
 
     @FXML
@@ -30,9 +33,10 @@ public class VentanaReservasController {
     @FXML
     private ListView<Habitacion> listViewHabitaciones;
 
+    private Application application;
+    private List<String> historial;
     private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private final ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
-    private Application application;
 
     private ObservableList<Habitacion> getListaHabitacionesData() {
         listaHabitacionesData.addAll(modelFactoryController.obtenerHabitaciones());
@@ -42,7 +46,8 @@ public class VentanaReservasController {
 
     @FXML
     void realizarReservaAction(ActionEvent event) {
-        application.mostrarGenerarReservas("ventana-reservas");
+        historial.add("ventana-reservas");
+        application.mostrarGenerarReservas(historial);
     }
 
     @FXML
@@ -80,7 +85,8 @@ public class VentanaReservasController {
         });
     }
 
-    public void setApplication(Application application) {
+    public void setApplication(Application application, List<String> historial) {
         this.application = application;
+        this.historial = historial;
     }
 }

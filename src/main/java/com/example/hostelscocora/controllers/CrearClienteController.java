@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.List;
+
 public class CrearClienteController {
 
     @FXML
@@ -37,9 +39,9 @@ public class CrearClienteController {
     @FXML
     private TextField tfTelefono;
 
-    private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private Application application;
-    private String ventanaAnterior;
+    private List<String> historial;
+    private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
 
     /**
      * ACTIONS QUE LE DAN FUNCION A LOS BOTONES
@@ -87,9 +89,12 @@ public class CrearClienteController {
 
     @FXML
     void regresarAction(ActionEvent event) {
-        if (ventanaAnterior.equals("ventana-generar-reservas")) {
-            application.mostrarGenerarReservas("ventana-reservas");
-        } else if(ventanaAnterior.equals("ventana-administrar")){
+        int ultimo = historial.size() - 1;
+        if (historial.get(ultimo).equals("ventana-generar-reservas")) {
+            historial.remove(ultimo);
+            application.mostrarGenerarReservas(historial);
+        } else if(historial.get(ultimo).equals("ventana-administrar")){
+            historial.remove(ultimo);
             application.mostrarVentanaAdministrar();
         }
     }
@@ -124,9 +129,9 @@ public class CrearClienteController {
     }
 
 
-    public void setApplication(Application application, String ventanaAnterior) {
+    public void setApplication(Application application, List<String> historial) {
         this.application = application;
-        this.ventanaAnterior = ventanaAnterior;
+        this.historial = historial;
     }
 
 }

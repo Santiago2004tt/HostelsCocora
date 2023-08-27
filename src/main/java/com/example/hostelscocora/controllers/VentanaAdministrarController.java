@@ -4,10 +4,14 @@ import com.example.hostelscocora.aplication.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VentanaAdministrarController {
 
-    private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private Application application;
+    private ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
+    private List<String> listaHistorial = new ArrayList<>();
 
     @FXML
     void administrarCamasAction(ActionEvent event) {
@@ -21,12 +25,14 @@ public class VentanaAdministrarController {
 
     @FXML
     void crearClienteAction(ActionEvent event) {
-        application.mostrarCrearCliente("ventana-administrar");
+        listaHistorial.add("ventana-administrar");
+        application.mostrarCrearCliente(listaHistorial);
     }
 
     @FXML
     void generarReservasAction(ActionEvent event) {
-        application.mostrarGenerarReservas("ventana-administrar");
+        listaHistorial.add("ventana-administrar");
+        application.mostrarGenerarReservas(listaHistorial);
     }
 
 
@@ -36,7 +42,7 @@ public class VentanaAdministrarController {
     }
     @FXML
     void ventanaReservasAction(ActionEvent event) {
-        application.mostrarVentanaReservas();
+        application.mostrarVentanaReservas(listaHistorial);
     }
 
     public void setApplication(Application application) {
