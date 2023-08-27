@@ -240,7 +240,6 @@ public class Hotel implements Serializable {
             }
         }
         if(contador== capacidad){
-            System.out.println("entro");
             return true;
         }
         return false;

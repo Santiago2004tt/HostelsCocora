@@ -1,5 +1,6 @@
 package com.example.hostelscocora.controllers;
 
+import com.example.hostelscocora.CustomListCell;
 import com.example.hostelscocora.aplication.Application;
 import com.example.hostelscocora.model.*;
 import javafx.collections.FXCollections;

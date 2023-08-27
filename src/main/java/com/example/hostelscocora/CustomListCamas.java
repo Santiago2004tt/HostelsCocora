@@ -1,5 +1,6 @@
-package com.example.hostelscocora.model;
+package com.example.hostelscocora;
 
+import com.example.hostelscocora.model.Cama;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

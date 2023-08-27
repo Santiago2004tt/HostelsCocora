@@ -1,5 +1,7 @@
-package com.example.hostelscocora.model;
+package com.example.hostelscocora;
 
+import com.example.hostelscocora.model.DetalleReserva;
+import com.example.hostelscocora.model.Habitacion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;

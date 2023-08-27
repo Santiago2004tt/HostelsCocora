@@ -1,5 +1,6 @@
 package com.example.hostelscocora.controllers;
 
+import com.example.hostelscocora.CustomListCamas;
 import com.example.hostelscocora.aplication.Application;
 import com.example.hostelscocora.exceptions.ValorRequeridoException;
 import com.example.hostelscocora.model.*;
