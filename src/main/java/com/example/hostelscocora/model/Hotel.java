@@ -196,11 +196,10 @@ public class Hotel implements Serializable {
         }
         for (Cama cama: listaCamas ) {
             if(cama.verificarDisponibilidad(fechaNueva)){
-                if(contador+ cama.getPeso()<=habitacionSeleccionada.getCapacidad()){
+                if(contador+ cama.getPeso()<=habitacionSeleccionada.getCapacidad() && cama.getEstadoCama().equals(ESTADO_CAMA.OPERACION)){
                     contador+= cama.getPeso();
                     habitacionSeleccionada.getListaCamas().add(cama);
                     cama.getListaHabitaciones().add(habitacionSeleccionada);
-                    System.out.println("se agrego "+ cama.getId() );
                 }
             }
         }

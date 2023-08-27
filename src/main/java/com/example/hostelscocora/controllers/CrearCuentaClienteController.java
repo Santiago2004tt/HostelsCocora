@@ -120,6 +120,8 @@ public class CrearCuentaClienteController {
             try {
                 if(modelFactoryController.crearCuentaCliente(nombre, apellido, cedula, telefono, email, contrasenia)){
                     mensajeInfo("Creación de cuenta", "Se creo correctamente la cuenta");
+                    modelFactoryController.guardarResourceSerializableService();
+                    modelFactoryController.guardarResourceXmlService();
                     accederLoginClienteAction();
                 }
             }catch (ClienteException e){

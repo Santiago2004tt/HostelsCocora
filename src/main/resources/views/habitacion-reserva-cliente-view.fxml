@@ -9,8 +9,8 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.HabitacionReservaClienteController">
    <children>
-      <DatePicker fx:id="dpFechaInicio" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
-      <DatePicker fx:id="dpFechaFinal" layoutX="150.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
+      <DatePicker fx:id="dpFechaInicio" editable="false" layoutX="14.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
+      <DatePicker fx:id="dpFechaFinal" editable="false" layoutX="150.0" layoutY="43.0" prefHeight="25.0" prefWidth="111.0" />
       <Label layoutX="14.0" layoutY="20.0" text="Fecha inicio:">
          <font>
             <Font name="Times New Roman" size="12.0" />
