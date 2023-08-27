@@ -2,6 +2,7 @@ package com.example.hostelscocora.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -20,6 +21,7 @@ public class CustomListCell extends ListCell<Habitacion> {
     private final ImageView imagen;
     private final Text idHabitacion;
     private final Text estadoHabitacion;
+    private final Text habitacionDisponible;
     private final ObservableList<DetalleReserva> listaReservasData = FXCollections.observableArrayList();
     private final ListView<DetalleReserva> listviewReservas;
 
@@ -28,7 +30,10 @@ public class CustomListCell extends ListCell<Habitacion> {
         imagen = new ImageView();
         idHabitacion = new Text();
         estadoHabitacion = new Text();
-        VBox vBox = new VBox(idHabitacion, estadoHabitacion);
+        habitacionDisponible = new Text();
+        VBox vBox = new VBox(idHabitacion, estadoHabitacion, habitacionDisponible);
+        vBox.setSpacing(15);
+        vBox.setAlignment(Pos.CENTER);
         listviewReservas = new ListView<>();
         listviewReservas.setMaxHeight(200);
         listviewReservas.setMaxWidth(150);
@@ -46,10 +51,14 @@ public class CustomListCell extends ListCell<Habitacion> {
     protected void updateItem(Habitacion habitacion, boolean empty) {
         super.updateItem(habitacion, empty);
         if (habitacion != null && !empty) {
-            imagen.setImage(new Image(habitacion.getImagen(), 200, 200, true, true));
+            imagen.setImage(new Image(habitacion.getImagen(), 150, 150, true, true));
             listviewReservas.setPrefHeight(imagen.getFitHeight());
             idHabitacion.setText(habitacion.getId());
-            estadoHabitacion.setText(habitacion.getEstadoHabitacion().toString().toLowerCase());
+            estadoHabitacion.setText(habitacion.getEstadoHabitacion().toString());
+            if (habitacion.habitacionDisponible())
+                habitacionDisponible.setText("Disponible");
+            else
+                habitacionDisponible.setText("Ocupada");
             listaReservasData.clear();
             listaReservasData.addAll(habitacion.getListaDetalleReserva());
             listviewReservas.setItems(listaReservasData);

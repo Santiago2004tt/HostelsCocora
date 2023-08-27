@@ -1,16 +1,19 @@
 package com.example.hostelscocora.controllers;
 
 import com.example.hostelscocora.aplication.Application;
-import com.example.hostelscocora.model.Cama;
-import com.example.hostelscocora.model.CustomListCamas;
-import com.example.hostelscocora.model.ESTADO_CAMA;
-import com.example.hostelscocora.model.Hotel;
+import com.example.hostelscocora.exceptions.ValorRequeridoException;
+import com.example.hostelscocora.model.*;
+import com.example.hostelscocora.util.MensajeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 public class VentanaCamasController {
 
@@ -39,6 +42,7 @@ public class VentanaCamasController {
      * INSTANCIAS
      */
     private Application application;
+    private Cama camaSeleccionada;
     private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private final Hotel hotel = modelFactoryController.getHotel();
     private final ObservableList<Cama> listaCamasData = FXCollections.observableArrayList();
@@ -54,12 +58,52 @@ public class VentanaCamasController {
      */
     @FXML
     void actualizarAction(ActionEvent event) {
-
+        try {
+            actualizarEstado(camaSeleccionada);
+            MensajeUtil.mensajeInformacion("Éxito", "El estado de la cama fue actualizado correctamente");
+        } catch (ValorRequeridoException e) {
+            MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
+        }
     }
 
     @FXML
     void regresarAction(ActionEvent event) {
         application.mostrarVentanaAdministrar();
+    }
+
+    /**
+     * ACTUALIZA EL ESTADO DE UNA CAMA
+     */
+    private void actualizarEstado(Cama cama) throws ValorRequeridoException {
+        if (cama == null)
+            throw new ValorRequeridoException("Es necesario que selecciona una cama");
+        if (cbEstadoCama.getValue() == null)
+            throw new ValorRequeridoException("El valor estado es requerido");
+
+        cama.setEstadoCama(cbEstadoCama.getValue());
+        listViewCamas.refresh();
+
+        modelFactoryController.guardarResourceXmlService();
+        modelFactoryController.guardarResourceSerializableService();
+    }
+
+    private Optional<Habitacion> habitacionActual(Cama cama) {
+        Optional<DetalleReserva> detalleReservaHoy;
+
+        List<Habitacion> listaHabitaciones = cama.getListaHabitaciones();
+        for (Habitacion habitacion : listaHabitaciones) {
+            List<DetalleReserva> detalleReservas = habitacion.getListaDetalleReserva();
+            detalleReservaHoy = detalleReservas.stream().filter(x -> {
+                LocalDate fechaInicial = x.getFecha().obtenerFechaInicio();
+                LocalDate fechaFinal = x.getFecha().obtenerFechaFinal();
+                LocalDate fechaHoy = LocalDate.now();
+                return fechaHoy.isAfter(fechaInicial.minusDays(1)) && fechaHoy.isBefore(fechaFinal.plusDays(1));
+            }).findFirst();
+            if (detalleReservaHoy.isPresent()) {
+                return Optional.of(habitacion);
+            }
+        }
+        return Optional.empty();
     }
 
     @FXML
@@ -75,6 +119,7 @@ public class VentanaCamasController {
 
         listViewCamas.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
+                camaSeleccionada = newValue;
                 llenarCampos(newValue);
             }
         });
@@ -90,8 +135,14 @@ public class VentanaCamasController {
         tfHabitacion.clear();
         tfTipoCama.clear();
 
+        Optional<Habitacion> habitacion = habitacionActual(cama);
+
+        if (habitacion.isPresent())
+            tfHabitacion.setText(habitacion.get().getId());
+        else
+            tfHabitacion.setText("No se encuentra en ninguna habitación");
+
         tfIdCamas.setText(cama.getId());
-//        tfHabitacion.setText(cama.ge);
         cbEstadoCama.setValue(cama.getEstadoCama());
         tfTipoCama.setText(cama.getTipoCama().toString());
     }

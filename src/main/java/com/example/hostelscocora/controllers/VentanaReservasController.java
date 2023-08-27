@@ -12,6 +12,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class VentanaReservasController {
 
     @FXML
@@ -30,7 +33,7 @@ public class VentanaReservasController {
     private ListView<Habitacion> listViewHabitaciones;
 
     private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
-    private ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
+    private final ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
     private Application application;
 
     private ObservableList<Habitacion> getListaHabitacionesData() {

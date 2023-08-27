@@ -1,9 +1,11 @@
 package com.example.hostelscocora.controllers;
 
 import com.example.hostelscocora.aplication.Application;
+import com.example.hostelscocora.exceptions.ValorRequeridoException;
 import com.example.hostelscocora.model.CeldaHabitacion;
 import com.example.hostelscocora.model.ESTADO_HABITACION;
 import com.example.hostelscocora.model.Habitacion;
+import com.example.hostelscocora.util.MensajeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
+
+import javax.swing.event.MenuDragMouseEvent;
 
 public class VentanaHabitacionesController {
 
@@ -38,9 +42,10 @@ public class VentanaHabitacionesController {
     @FXML
     private TextField tfTipoHabitacion;
 
+    private Application application;
+    private Habitacion habitacionSeleccionada;
     private final ModelFactoryController modelFactoryController = ModelFactoryController.getInstance();
     private final ObservableList<Habitacion> listaHabitacionesData = FXCollections.observableArrayList();
-    private Application application;
     private ObservableList<Habitacion> getListaHabitacionesData() {
         listaHabitacionesData.addAll(modelFactoryController.obtenerHabitaciones());
         return listaHabitacionesData;
@@ -52,7 +57,12 @@ public class VentanaHabitacionesController {
      */
     @FXML
     void actualizarAction(ActionEvent event) {
-
+        try {
+            actualizaEstado();
+            MensajeUtil.mensajeInformacion("Éxito", "Se actualizo correctamente el estado");
+        } catch (ValorRequeridoException e) {
+            MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
+        }
     }
 
     @FXML
@@ -60,9 +70,24 @@ public class VentanaHabitacionesController {
         application.mostrarVentanaAdministrar();
     }
 
+    /**
+     * METODOS QUE LE DAN FUNCIONALIDAD A LOS ACTION
+     */
+    private void actualizaEstado() throws ValorRequeridoException {
+        if (habitacionSeleccionada == null)
+            throw new ValorRequeridoException("Es necesario que selecciona una habitación");
+        if (cbEstadoHabitacion.getValue() == null)
+            throw new ValorRequeridoException("El valor estado es requerido");
+
+        habitacionSeleccionada.setEstadoHabitacion(cbEstadoHabitacion.getValue());
+        listViewHabitaciones.refresh();
+        modelFactoryController.guardarResourceXmlService();
+        modelFactoryController.guardarResourceSerializableService();
+    }
+
+
     @FXML
     void initialize() {
-
         cbEstadoHabitacion.setItems(FXCollections.observableArrayList(ESTADO_HABITACION.values()));
         cbEstadoHabitacion.setPromptText("Seleccionar");
 
@@ -73,6 +98,24 @@ public class VentanaHabitacionesController {
                 return new CeldaHabitacion();
             }
         });
+
+        listViewHabitaciones.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                habitacionSeleccionada = newValue;
+                llenarCampos(newValue);
+            }
+        });
+    }
+
+    private void llenarCampos(Habitacion habitacion) {
+        tfIdHabitacion.clear();
+        tfTipoHabitacion.clear();
+        tfCantidadReservas.clear();
+
+        tfIdHabitacion.setText(habitacion.getId());
+        cbEstadoHabitacion.setValue(habitacion.getEstadoHabitacion());
+        tfTipoHabitacion.setText(habitacion.getTipoHabitacion().toString());
+        tfCantidadReservas.setText(String.valueOf(habitacion.getListaDetalleReserva().size()));
     }
 
     public void setApplication(Application application) {

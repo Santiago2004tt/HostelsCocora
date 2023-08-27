@@ -84,6 +84,12 @@
                   <Font name="Times New Roman Bold" size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="tfCantidadPersonas" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="Cantidad de personas" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Times New Roman Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <ListView fx:id="listViewHabitaciones" layoutX="31.0" layoutY="65.0" prefHeight="244.0" prefWidth="292.0" />
@@ -130,6 +136,11 @@
          </font>
       </Button>
       <Label layoutX="31.0" layoutY="36.0" text="Habitaciones">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" layoutX="424.0" layoutY="565.0" text="Total: 0">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>

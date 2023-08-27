@@ -37,7 +37,7 @@ public class VentanaGenerarReservasController {
     private Button btnRegresar;
 
     @FXML
-    private ComboBox<CAMA_EXTRA> cbCamaAdicional;
+    private ComboBox<String> cbCamaAdicional;
 
     @FXML
     private ComboBox<TIPO_HABITACION> cbTipoHabitacion;
@@ -49,10 +49,16 @@ public class VentanaGenerarReservasController {
     private DatePicker dpFechaInicial;
 
     @FXML
+    private Label lblTotal;
+
+    @FXML
     private ListView<Habitacion> listViewHabitaciones;
 
     @FXML
     private TextField tfApellido;
+
+    @FXML
+    private TextField tfCantidadPersonas;
 
     @FXML
     private TextField tfCedula;
@@ -127,7 +133,7 @@ public class VentanaGenerarReservasController {
         try {
             agregarReserva();
             MensajeUtil.mensajeInformacion("Éxito", "Se agrego correctamente a la reserva");
-        } catch (ValorRequeridoException e) {
+        } catch (Exception e) {
             MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
         }
     }
@@ -177,7 +183,7 @@ public class VentanaGenerarReservasController {
      * METODOS PARA QUE FUNCIONEN LOS ACTIONS
      * @throws ValorRequeridoException
      */
-    private void agregarReserva() throws ValorRequeridoException {
+    private void agregarReserva() throws Exception {
         if (habitacionSeleccionada == null)
             throw new ValorRequeridoException("Seleccione una habitación");
         if (cliente == null)
@@ -188,6 +194,17 @@ public class VentanaGenerarReservasController {
             throw new ValorRequeridoException("El valor fecha final es requerido");
         if (cbCamaAdicional.getValue() == null)
             throw new ValorRequeridoException("El campo cama extra es requerido");
+        if (tfCantidadPersonas.getText().isEmpty())
+            throw new ValorRequeridoException("El campo cantidad de personas es requerido");
+
+        Fecha fechaNueva = new Fecha(dpFechaInicial.getValue().toString(), dpFechaFinal.getValue().toString());
+
+        boolean isCamaExtra  = cbCamaAdicional.getValue().equals("Sí");
+
+        if (!modelFactoryController.verificarCamasDisponibles(isCamaExtra, habitacionSeleccionada.getCapacidad(), fechaNueva))
+            throw new Exception("No hay camas disponibles");
+
+
         if (reserva == null) {
             reserva = hotel.crearReserva();
             reserva.setCliente(cliente);
@@ -195,10 +212,10 @@ public class VentanaGenerarReservasController {
             cliente.getListaReserva().add(reserva);
         }
 
-        double subTotal = calcularSubtotal(habitacionSeleccionada, cbCamaAdicional.getValue(), dpFechaInicial.getValue(), dpFechaFinal.getValue());
-        Fecha fecha = new Fecha(dpFechaInicial.getValue().toString(), dpFechaFinal.getValue().toString());
-
-        DetalleReserva detalleReserva = reserva.crearDetalleReserva(subTotal, cbCamaAdicional.getValue().getBoolean(), fecha);
+        modelFactoryController.aniadirCamas(habitacionSeleccionada, isCamaExtra, fechaNueva);
+        double subTotal = calcularSubtotal(habitacionSeleccionada, isCamaExtra, dpFechaInicial.getValue(), dpFechaFinal.getValue());
+        reserva.setCantidadPersonas(Integer.parseInt(tfCantidadPersonas.getText()));
+        DetalleReserva detalleReserva = reserva.crearDetalleReserva(subTotal, isCamaExtra, fechaNueva);
         detalleReserva.setHabitacion(habitacionSeleccionada);
         habitacionSeleccionada.getListaDetalleReserva().add(detalleReserva);
 
@@ -209,6 +226,9 @@ public class VentanaGenerarReservasController {
 
         modelFactoryController.guardarResourceXmlService();
         modelFactoryController.guardarResourceSerializableService();
+
+        lblTotal.setText("Total: " + reserva.obtenerTotal());
+        reserva.setTotal(reserva.obtenerTotal());
     }
 
     /**
@@ -219,14 +239,14 @@ public class VentanaGenerarReservasController {
      * @param fechaFinal
      * @return
      */
-    private Double calcularSubtotal(Habitacion habitacion, CAMA_EXTRA isCamaExtra, LocalDate fechaInicial, LocalDate fechaFinal) {
+    private Double calcularSubtotal(Habitacion habitacion, boolean isCamaExtra, LocalDate fechaInicial, LocalDate fechaFinal) {
         int cantidadDias = (int) ChronoUnit.DAYS.between(fechaInicial, fechaFinal);
         double subTotal = 50000;
 
         if (habitacion.getTipoHabitacion() == TIPO_HABITACION.HABITACION_SIMPLE)
             subTotal += 50000;
 
-        if (isCamaExtra.getBoolean())
+        if (isCamaExtra)
             subTotal += 25000;
 
         return subTotal * cantidadDias;
@@ -259,6 +279,8 @@ public class VentanaGenerarReservasController {
         tfApellido.setText(cliente.getApellido());
         tfTelefono.setText(cliente.getTelefono());
         tfEmail.setText(cliente.getEmail());
+
+        reserva = null;
     }
 
     /**
@@ -276,7 +298,7 @@ public class VentanaGenerarReservasController {
     @FXML
     void initialize() {
 
-        cbCamaAdicional.setItems(FXCollections.observableArrayList(CAMA_EXTRA.values()));
+        cbCamaAdicional.setItems(FXCollections.observableArrayList("Sí", "No"));
         cbCamaAdicional.setPromptText("Seleccionar");
         cbCamaAdicional.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
