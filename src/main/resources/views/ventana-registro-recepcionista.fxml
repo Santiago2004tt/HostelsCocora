@@ -10,26 +10,22 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="498.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.VentanaLoginRecepcionista">
+
+<AnchorPane prefHeight="498.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hostelscocora.controllers.VentanaRegistroRecepcionista">
    <children>
-      <Button fx:id="btnCliente" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#clienteAction" text="Cliente">
+      <Button fx:id="btnCrear" layoutX="262.0" layoutY="400.0" mnemonicParsing="false" onAction="#crearUsuarioAction" text="Crear">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="227.0" layoutY="39.0" text="Iniciar Sesion">
+      <Label layoutX="180.0" layoutY="14.0" text="Registrar Recepcionista">
          <font>
             <Font name="Times New Roman Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnAcceder" layoutX="255.0" layoutY="404.0" mnemonicParsing="false" onAction="#accederAction" text="Acceder">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font>
-      </Button>
-      <GridPane layoutX="143.0" layoutY="188.0" prefHeight="122.0" prefWidth="298.0">
+      <GridPane layoutX="139.0" layoutY="171.0" prefHeight="156.0" prefWidth="305.0">
         <columnConstraints>
-          <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -37,21 +33,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="tfUsuario" onKeyReleased="#usuarioReleased" GridPane.columnIndex="1" />
-            <Label text="Contraseña" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Times New Roman Bold" size="15.0" />
-               </font>
-            </Label>
             <Label text="Usuario">
                <font>
                   <Font name="Times New Roman Bold" size="15.0" />
                </font>
             </Label>
-            <PasswordField fx:id="tfContrasenia" onKeyReleased="#contraseniaReleased" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Contraseña" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Times New Roman Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfUsuario" onKeyReleased="#usuarioReleased" GridPane.columnIndex="1" />
+            <PasswordField fx:id="pfContrasenia" onKeyReleased="#contraseniaReleased" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegistro" layoutX="494.0" layoutY="456.0" mnemonicParsing="false" onAction="#registroAction" text="Registro">
+      <Button fx:id="btnLogin" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#loginAction" text="Login">
          <font>
             <Font name="Times New Roman Bold" size="15.0" />
          </font>
