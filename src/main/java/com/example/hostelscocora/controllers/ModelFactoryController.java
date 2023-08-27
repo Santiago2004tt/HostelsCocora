@@ -1,6 +1,7 @@
 package com.example.hostelscocora.controllers;
 
 import com.example.hostelscocora.exceptions.ClienteException;
+import com.example.hostelscocora.exceptions.RecepcionistaException;
 import com.example.hostelscocora.model.*;
 import com.example.hostelscocora.persistence.Persistencia;
 
