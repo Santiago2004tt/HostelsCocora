@@ -164,9 +164,29 @@ public class Hotel implements Serializable {
         }
     }
 
+    public void crearCuentaRecepcionista(String usuario, String contrasenia) throws RecepcionistaException {
+        Recepcionista recepcionista = new Recepcionista();
+        recepcionista.setUsuario(usuario);
+        recepcionista.setContrasenia(contrasenia);
+
+        if (verificarExistenciaRecepcionista(usuario)) {
+            listaRecepcionistas.add(recepcionista);
+            return;
+        }
+        throw new RecepcionistaException("El usuario ya se encuentra registrado");
+    }
+
     private boolean verificarExistenciaCliente(Cliente cliente) {
         for (Cliente cliente1: listaClientes) {
             if(cliente.getCedula().equals(cliente1.getCedula())){
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean verificarExistenciaRecepcionista(String usuario) {
+        for (Recepcionista recepcionista: listaRecepcionistas) {
+            if(usuario.equals(recepcionista.getUsuario())){
                 return false;
             }
         }

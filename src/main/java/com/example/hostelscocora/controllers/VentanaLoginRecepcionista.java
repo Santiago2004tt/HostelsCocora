@@ -20,6 +20,9 @@ public class VentanaLoginRecepcionista {
     private Button btnCliente;
 
     @FXML
+    private Button btnRegistro;
+
+    @FXML
     private PasswordField tfContrasenia;
 
     @FXML
@@ -45,6 +48,11 @@ public class VentanaLoginRecepcionista {
     void contraseniaReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER)
             btnAcceder.fire();
+    }
+
+    @FXML
+    void registroAction(ActionEvent event) {
+        application.mostrarVentanaRegistroRecepcionista();
     }
 
     @FXML

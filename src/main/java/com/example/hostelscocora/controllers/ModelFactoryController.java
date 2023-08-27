@@ -5,6 +5,7 @@ import com.example.hostelscocora.exceptions.RecepcionistaException;
 import com.example.hostelscocora.model.*;
 import com.example.hostelscocora.persistence.Persistencia;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ModelFactoryController implements Runnable{
@@ -190,6 +191,9 @@ public class ModelFactoryController implements Runnable{
 
     public boolean crearCuentaCliente(String nombre, String apellido, String cedula, String telefono, String email, String contrasenia) throws ClienteException {
         return hotel.crearCuentaCliente(nombre, apellido, cedula, telefono, email, contrasenia);
+    }
+    public void crearCuentaRecepcionista(String usuario, String contrasenia) throws RecepcionistaException {
+        hotel.crearCuentaRecepcionista(usuario, contrasenia);
     }
 
 }

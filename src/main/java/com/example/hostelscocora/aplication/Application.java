@@ -190,6 +190,27 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarVentanaRegistroRecepcionista() {
+        try {
+            stage.close();
+            stage = new Stage();
+            //Loader lee cada línea de código y la vuelve objetos en memoria
+            FXMLLoader loader = new FXMLLoader();
+            //Dirección del paquete donde está la interfaz
+            loader.setLocation(Application.class.getResource("/views/ventana-registro-recepcionista.fxml"));
+            AnchorPane rootLayout = loader.load();
+            //Carga los controladores
+            VentanaRegistroRecepcionista controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
+            // de cambiar de ventana con escape
+            stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
+            stage.show();//Muestra el escenario principal
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void mostrarVentanaAdministrar() {
         try {
             stage.close();
