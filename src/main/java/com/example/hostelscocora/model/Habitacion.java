@@ -1,7 +1,9 @@
 package com.example.hostelscocora.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Habitacion implements Serializable {
@@ -101,6 +103,24 @@ public class Habitacion implements Serializable {
 
     public void setListaDetalleReserva(ArrayList<DetalleReserva> listaDetalleReserva) {
         this.listaDetalleReserva = listaDetalleReserva;
+    }
+
+    /**
+     * SE ENCARGA DE VERIFICAR SI LA HABITACION ESTA DISPONIBLE HOY
+     * @return
+     */
+    public boolean habitacionDisponible() {
+        for (DetalleReserva detalleReserva : listaDetalleReserva) {
+            LocalDate fechaInicial = detalleReserva.getFecha().obtenerFechaInicio();
+            LocalDate fechaFinal = detalleReserva.getFecha().obtenerFechaFinal();
+            LocalDate fechaHoy = LocalDate.now();
+
+            if (fechaHoy.isAfter(fechaInicial.minusDays(1)) &&
+                    fechaHoy.isBefore(fechaFinal.plusDays(1))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

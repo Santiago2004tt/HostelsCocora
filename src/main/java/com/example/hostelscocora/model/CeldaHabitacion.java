@@ -16,12 +16,14 @@ public class CeldaHabitacion extends ListCell<Habitacion> {
     private final ImageView imagen;
     private final Text idHabitacion;
     private final Text tipoHabitacion;
+    private final Text estadoHabitacion;
 
     public CeldaHabitacion() {
         imagen = new ImageView();
         idHabitacion = new Text();
         tipoHabitacion = new Text();
-        VBox vBox = new VBox(idHabitacion, tipoHabitacion);
+        estadoHabitacion = new Text();
+        VBox vBox = new VBox(idHabitacion, tipoHabitacion, estadoHabitacion);
         contente = new HBox(imagen, vBox);
         contente.setSpacing(10);
     }
@@ -33,6 +35,7 @@ public class CeldaHabitacion extends ListCell<Habitacion> {
             imagen.setImage(new Image(habitacion.getImagen(), 100, 100, true, true));
             idHabitacion.setText("N° " + habitacion.getId());
             tipoHabitacion.setText(habitacion.getTipoHabitacion().toString());
+            estadoHabitacion.setText(habitacion.getEstadoHabitacion().toString());
             setGraphic(contente);
         } else {
             setGraphic(null);

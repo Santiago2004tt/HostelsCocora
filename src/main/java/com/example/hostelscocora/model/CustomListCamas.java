@@ -4,6 +4,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
@@ -15,13 +16,16 @@ public class CustomListCamas extends ListCell<Cama> {
     private final HBox content;
     private final ImageView imagen;
     private final Text id;
+    private final Text estadoCama;
 
     public CustomListCamas() {
         super();
         imagen = new ImageView();
         id = new Text();
-        content = new HBox(imagen, id);
-        content.setSpacing(50);
+        estadoCama = new Text();
+        VBox vBox = new VBox(id, estadoCama);
+        content = new HBox(imagen, vBox);
+        content.setSpacing(30);
     }
 
     @Override
@@ -30,6 +34,7 @@ public class CustomListCamas extends ListCell<Cama> {
         if (cama != null && !empty) {
             imagen.setImage(new Image(cama.getImagen(), 150, 150, true, true));
             id.setText("ID: " + cama.getId());
+            estadoCama.setText("Estado: " + cama.getEstadoCama());
             setGraphic(content);
         } else {
             setGraphic(null);

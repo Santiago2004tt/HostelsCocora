@@ -11,9 +11,9 @@ public class ModelFactoryController implements Runnable{
     /**
      * atributos
      */
-    Hotel hotel;
-    Thread guardarXML;
-    Thread guardarSerializable;
+    private Hotel hotel;
+    private Thread guardarXML;
+    private Thread guardarSerializable;
 
     /**
      *
@@ -69,7 +69,7 @@ public class ModelFactoryController implements Runnable{
     }
 
     public ModelFactoryController() {
-        this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
+            this.hotel = Persistencia.cargarRecursoMarketPlaceXML();
 
         if(hotel == null) {
             inicializarDatos();
