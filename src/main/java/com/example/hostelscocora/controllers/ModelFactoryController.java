@@ -5,7 +5,6 @@ import com.example.hostelscocora.exceptions.RecepcionistaException;
 import com.example.hostelscocora.model.*;
 import com.example.hostelscocora.persistence.Persistencia;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ModelFactoryController implements Runnable{
@@ -114,22 +113,22 @@ public class ModelFactoryController implements Runnable{
     }
 
     private void inicializarCamas() {
-        for (int i = 1; i <= 40; i++) {
-            Cama cama = new Cama();
-            cama.setId("c"+i);
-            cama.setTipoCama(TIPO_CAMA.CAMA_SIMPLE);
-            cama.setPeso((byte) 1);
-            cama.setEstadoCama(ESTADO_CAMA.OPERACION);
-            cama.setImagen("cama-simple.png");
-            hotel.getListaCamas().add(cama);
-        }
         for (int i = 41; i <= 45; i++) {
             Cama cama = new Cama();
             cama.setId("c"+i);
             cama.setTipoCama(TIPO_CAMA.CAMA_DOBLE);
             cama.setPeso((byte) 2);
             cama.setEstadoCama(ESTADO_CAMA.OPERACION);
-            cama.setImagen("cama-doble.png");
+            cama.setImagen(getClass().getResource("/images/cama-doble.png").toString());
+            hotel.getListaCamas().add(cama);
+        }
+        for (int i = 1; i <= 40; i++) {
+            Cama cama = new Cama();
+            cama.setId("c"+i);
+            cama.setTipoCama(TIPO_CAMA.CAMA_SIMPLE);
+            cama.setPeso((byte) 1);
+            cama.setEstadoCama(ESTADO_CAMA.OPERACION);
+            cama.setImagen(getClass().getResource("/images/cama-simple.png").toString());
             hotel.getListaCamas().add(cama);
         }
     }
@@ -141,7 +140,7 @@ public class ModelFactoryController implements Runnable{
             habitacion.setId("h"+i);
             habitacion.setTipoHabitacion(TIPO_HABITACION.HABITACION_SIMPLE);
             habitacion.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
-            habitacion.setImagen("habitacion-simple.png");
+            habitacion.setImagen(getClass().getResource("/images/habitacion-simple.png").toString());
             hotel.getListaHabitaciones().add(habitacion);
         }
         for (int i = 11; i<=20; i++){
@@ -150,7 +149,7 @@ public class ModelFactoryController implements Runnable{
             habitacion.setId("h"+i);
             habitacion.setTipoHabitacion(TIPO_HABITACION.HABITACION_DOBLE);
             habitacion.setEstadoHabitacion(ESTADO_HABITACION.OPERACION);
-            habitacion.setImagen("habitacion-doble.png");
+            habitacion.setImagen(getClass().getResource("/images/habitacion-doble.png").toString());
             hotel.getListaHabitaciones().add(habitacion);
         }
     }
