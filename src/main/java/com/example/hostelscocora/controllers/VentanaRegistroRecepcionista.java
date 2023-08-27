@@ -66,6 +66,8 @@ public class VentanaRegistroRecepcionista {
         if (contrasenia.isEmpty())
             throw new ValorRequeridoException("El campo contraseña es requerido");
         modelFactoryController.crearCuentaRecepcionista(usuario, contrasenia);
+        modelFactoryController.guardarResourceXmlService();
+        modelFactoryController.guardarResourceSerializableService();
     }
 
     public void setApplication(Application application) {
