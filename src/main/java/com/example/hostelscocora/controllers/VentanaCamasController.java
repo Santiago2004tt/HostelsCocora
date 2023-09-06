@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class VentanaCamasController {
+public class  VentanaCamasController {
 
     @FXML
     private Button btnActualizar;
