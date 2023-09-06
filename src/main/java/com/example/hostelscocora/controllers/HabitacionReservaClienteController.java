@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -193,7 +194,28 @@ public class HabitacionReservaClienteController {
         this.modelFactoryController = ModelFactoryController.getInstance();
         cbCamaExtra.getItems().addAll("Si", "No");
         inicializarTabla();
+
+        dpFechaInicio.setDayCellFactory(dayCellFactoryInicial);
+        dpFechaFinal.setDayCellFactory(dayCellFactoryFinal);
     }
+
+    Callback<DatePicker, DateCell> dayCellFactoryInicial = dp -> new DateCell() {
+        @Override
+        public void updateItem(LocalDate item, boolean empty) {
+            if (dpFechaFinal.getValue() != null && item.isAfter(dpFechaFinal.getValue()) || item.isBefore(LocalDate.now())) {
+                this.setDisable(true);
+            }
+        }
+    };
+
+    Callback<DatePicker, DateCell> dayCellFactoryFinal = dp -> new DateCell() {
+        @Override
+        public void updateItem(LocalDate item, boolean empty) {
+            if (dpFechaInicio.getValue() != null && item.isBefore(dpFechaInicio.getValue()) || item.isBefore(LocalDate.now())) {
+                this.setDisable(true);
+            }
+        }
+    };
 
     private void inicializarTabla() {
         this.colTipoHabitacion.setCellValueFactory(new PropertyValueFactory<>("tipoHabitacion"));

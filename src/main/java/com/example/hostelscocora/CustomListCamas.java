@@ -1,6 +1,7 @@
 package com.example.hostelscocora;
 
 import com.example.hostelscocora.model.Cama;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,8 @@ public class CustomListCamas extends ListCell<Cama> {
         id = new Text();
         estadoCama = new Text();
         VBox vBox = new VBox(id, estadoCama);
+        vBox.setSpacing(20);
+        vBox.setAlignment(Pos.CENTER);
         content = new HBox(imagen, vBox);
         content.setSpacing(30);
     }
